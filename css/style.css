@@ -102,3 +102,17 @@
   font-size: 0.9rem;
 }
 
+.pokedex .btn-salvar-pokemon {
+  background-color: #3b4cca;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pokedex .btn-salvar-pokemon:hover {
+  background-color: #2a3791;
+}

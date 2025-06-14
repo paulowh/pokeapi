@@ -71,43 +71,46 @@ function buscarPokemonCompleto(valor = null) {
             }
 
             resultado.innerHTML = `
-               <article class="pokemon-card p-3">
-                <header class="text-center mb-3">
-                    <div class="pokemon-images mb-2">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="pokedex-img">
-                    <img src="${pokemon.sprites.front_shiny}" alt="${pokemon.name} shiny" class="pokedex-img">
+                <article class="pokemon-card p-3">
+                    <div class="card-top-actions d-flex justify-content-end mb-2">
+                        <button class="btn btn-salvar-pokemon" onclick="salvarPokemon(${pokemon.id})"">Salvar</button>
                     </div>
-                    <h4 class="pokemon-title mb-1">${pokemon.name}</h4>
-                    ${pokemon.id == 7 ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
-                    <small class="pokemon-id">#${pokemon.id}</small>
-                </header>
-                
-                <hr>
+                    <header class="text-center mb-3">
+                        <div class="pokemon-images mb-2">
+                        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="pokedex-img">
+                        <img src="${pokemon.sprites.front_shiny}" alt="${pokemon.name} shiny" class="pokedex-img">
+                        </div>
+                        <h4 class="pokemon-title mb-1">${pokemon.name}</h4>
+                        ${pokemon.id == 7 ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
+                        <small class="pokemon-id">#${pokemon.id}</small>
+                        
+                    </header>
+                    
+                    <hr>
 
-                <section class="pokemon-detalhes mb-3">
-                    <h6 class="pokemon-section-title">Informações Básicas</h6>
-                    <ul class="pokemon-info-list">
-                    <li><strong>Tipo:</strong> ${tipos}</li>
-                    <li><strong>Altura:</strong> ${(pokemon.height / 10).toFixed(1)} m</li>
-                    <li><strong>Peso:</strong> ${(pokemon.weight / 10).toFixed(1)} kg</li>
-                    </ul>
-                </section>
+                    <section class="pokemon-detalhes mb-3">
+                        <h6 class="pokemon-section-title">Informações Básicas</h6>
+                        <ul class="pokemon-info-list">
+                        <li><strong>Tipo:</strong> ${tipos}</li>
+                        <li><strong>Altura:</strong> ${(pokemon.height / 10).toFixed(1)} m</li>
+                        <li><strong>Peso:</strong> ${(pokemon.weight / 10).toFixed(1)} kg</li>
+                        </ul>
+                    </section>
 
-                <hr>
-
-                <section class="pokemon-habilidades mb-3">
-                    <h6 class="pokemon-section-title">Habilidades</h6>
-                    <p class="mb-0">${habilidades}</p>
-                </section>
-
-                <hr>
-
-                <section class="pokemon-status">
-                    <h6 class="pokemon-section-title">Estatísticas</h6>
-                    <ul class="pokemon-status-list">
-                    ${status}
-                    </ul>
-                </section>
+                    <hr>
+                    <section class="pokemon-habilidades mb-3">
+                        <h6 class="pokemon-section-title">Habilidades</h6>
+                        <p class="mb-0">${habilidades}</p>
+                    </section>
+                    
+                    <hr>
+                    
+                    <section class="pokemon-status">
+                        <h6 class="pokemon-section-title">Estatísticas</h6>
+                        <ul class="pokemon-status-list">
+                        ${status}
+                        </ul>
+                    </section>
                 </article>
                 `;
 
@@ -127,13 +130,44 @@ function buscarPokemonAleatorio() {
     buscarPokemonCompleto(numero);
 }
 
-// Ativar busca com Enter
-document.addEventListener('DOMContentLoaded', function () {
-    const entrada = document.getElementById('entrada');
-    entrada.addEventListener('keypress', function (evento) {
-        if (evento.key === 'Enter') {
-            evento.preventDefault();
-            buscarPokemonCompleto();
+function salvarPokemon(id) {
+    let lista = sessionStorage.getItem('pokemonsSalvos');
+    let pokemons = lista ? JSON.parse(lista) : [];
+
+    if (!pokemons.includes(id)) {
+        pokemons.push(id);
+        sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
+        console.log(`✅ Pokémon #${id} salvo na sessão!`);
+    } else {
+        console.log(`ℹ️ Pokémon #${id} já está salvo.`);
+    }
+
+    // Exibe a lista completa no console
+    console.log('📦 Lista de Pokémons salvos:', pokemons);
+}
+
+async function pokemon() {
+    const salvos = sessionStorage.getItem('pokemonsSalvos');
+    if (!salvos) {
+        console.log('Você ainda não salvou nenhum Pokémon.');
+        return;
+    }
+
+    const ids = JSON.parse(salvos);
+    console.log(`Pokémons salvos: ${ids.join(', ')}`);
+
+    for (const id of ids) {
+        try {
+            const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const pokemon = await resposta.json();
+            console.log(`#${pokemon.id} - ${pokemon.name}`);
+        } catch (erro) {
+            console.error(`Erro ao buscar Pokémon com ID ${id}:`, erro);
         }
-    });
-});
+    }
+}
+
+function limparPokemon() {
+  sessionStorage.removeItem('pokemonsSalvos');
+  console.log('Todos os Pokémons salvos foram removidos do sessionStorage.');
+}
