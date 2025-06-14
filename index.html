@@ -2,48 +2,49 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pokédex Bootstrap</title>
-  <!-- Bootstrap CSS -->
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultar Pokémon</title>
+    
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body class="bg-light">
+    <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <nav class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.html">
+                <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
+                PokéApp
+            </a>
+            <div class="mx-auto">
+                <ul class="navbar-nav d-flex flex-row gap-3">
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./index.html">Pokédex</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold"
+                            href="./listar-pokemon.html">Listar</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Mini Game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-  <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-    <nav class="container">
-      <!-- Logo -->
-      <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.html">
-        <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
-        PokéApp
-      </a>
+    <section class="container py-4">
+        <h2 class="text-center text-primary mb-4">Buscar Pokémon</h2>
 
-      <div class="mx-auto">
-        <ul class="navbar-nav d-flex flex-row gap-3">
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-semibold" href="#">Listar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-semibold" href="#">Pokédex</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-semibold" href="#">Mini Game</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+        <main class="row justify-content-center mb-4">
+            <div class="col-md-6 d-flex gap-2">
+                <input type="text" id="entrada" class="form-control" placeholder="Digite nome ou número">
+                <button class="btn btn-danger" onclick="buscarPokemonCompleto()">Buscar</button>
+                <button class="btn btn-secondary" onclick="buscarPokemonAleatorio()">Aleatório</button>
+            </div>
+        </main>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <section class="container py-4">
-    <h1 class="text-center text-danger mb-4">Pokédex - Os verdadeiros 151 Pokémon</h1>
-    <main class="row" id="pokedex"></main>
-  </section>
+        <main class="row justify-content-center">
+            <div class="col-md-6 pokedex" id="resultado"></div>
+        </main>
+    </section>
 
-  <!-- Scripts -->
-  <script src="./js/main.js"></script>
+    <script src="./js/pokedex.js"></script>
 </body>
 
 </html>

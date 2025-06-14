@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex Bootstrap</title>
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="bg-light">
+
+        <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <nav class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.html">
+                <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
+                PokéApp
+            </a>
+            <div class="mx-auto">
+                <ul class="navbar-nav d-flex flex-row gap-3">
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./index.html">Pokédex</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./listar-pokemon.html">Listar</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Mini Game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container py-4">
+        <h1 class="text-center text-danger mb-4">Pokédex - Os verdadeiros 151 Pokémon</h1>
+        <main class="row" id="pokedex"></main>
+    </section>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

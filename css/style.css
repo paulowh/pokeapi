@@ -1,3 +1,5 @@
+
+
 .pokemon-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -18,3 +20,85 @@
 .pokemon-title {
     text-transform: capitalize;
 }
+
+.pokedex .pokemon-card {
+    max-width: 380px;
+    margin: auto;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding: 1rem;
+}
+
+/* Título do Pokémon */
+.pokedex .pokemon-title {
+    text-transform: capitalize;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+/* ID do Pokémon */
+.pokedex .pokemon-id {
+    color: #666;
+}
+
+/* Imagens do Pokémon */
+.pokedex .pokemon-images {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.pokedex .pokemon-images img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+}
+
+/* Títulos das seções */
+.pokedex .pokemon-section-title {
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+/* Lista com informações básicas */
+.pokedex .pokemon-info-list {
+    
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.pokedex .pokemon-status-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pokedex .pokemon-status-item {
+    width: 48%;
+    background: #f8f9fa;
+    padding: 6px 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #222;
+}
+
+/* Fonte padrão para listas informativas e de status */
+.pokedex .pokemon-info-list li,
+.pokedex .pokemon-status-item {
+  font-size: 0.9rem;
+}
+
