@@ -1,4 +1,3 @@
-// Função principal usada tanto pelo botão quanto pelo enter
 function buscarPokemonCompleto(valor = null) {
     const entrada = document.getElementById('entrada');
     const resultado = document.getElementById('resultado');
@@ -124,7 +123,6 @@ function buscarPokemonCompleto(valor = null) {
 
 }
 
-// Função para gerar número aleatório de 1 a 151
 function buscarPokemonAleatorio() {
     const numero = Math.floor(Math.random() * 151) + 1;
     buscarPokemonCompleto(numero);
@@ -142,7 +140,6 @@ function salvarPokemon(id) {
         console.log(`ℹ️ Pokémon #${id} já está salvo.`);
     }
 
-    // Exibe a lista completa no console
     console.log('📦 Lista de Pokémons salvos:', pokemons);
 }
 
@@ -171,3 +168,9 @@ function limparPokemon() {
   sessionStorage.removeItem('pokemonsSalvos');
   console.log('Todos os Pokémons salvos foram removidos do sessionStorage.');
 }
+
+document.getElementById('entrada').addEventListener("keydown", (event) =>{
+    if (event.code == 'Enter') {
+        buscarPokemonCompleto()
+    }    
+})
