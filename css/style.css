@@ -122,3 +122,8 @@ img.type-icon:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.oculto {
+    mix-blend-mode: multiply;
+    filter: brightness(0) contrast(1000);
+}

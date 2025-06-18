@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body>
+<body onload="carregarMeusPokemon()">
     <header class="navbar navbar-light bg-white border-bottom shadow-sm">
         <nav class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.html">
@@ -56,82 +56,7 @@
         <div id="lista-pokemons" class="row gy-4"></div>
     </main>
 
-    <script>
-        // alterar para arquivo js depois
-        // unificar functions repetidas
-        function getIcon(type) {
-            return `./img/icons/${type}.svg`;
-        }
-        async function carregarMeusPokemons() {
-            const container = document.getElementById('lista-pokemons');
-            const salvos = sessionStorage.getItem('pokemonsSalvos');
-
-            if (!salvos) {
-                container.innerHTML = '<div class="alert alert-warning text-center">Você ainda não salvou nenhum Pokémon.</div>';
-                return;
-            }
-
-            const ids = JSON.parse(salvos);
-            if (ids.length === 0) {
-                container.innerHTML = '<div class="alert alert-info text-center">Nenhum Pokémon salvo ainda.</div>';
-                return;
-            }
-
-            container.innerHTML = ''; // limpa antes de adicionar
-
-            for (const id of ids) {
-                try {
-                    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-                    const pokemon = await res.json();
-
-
-                    let typeHTML = '';
-                    for (const t of pokemon.types) {
-                        const typeName = t.type.name;
-                        const iconType = getIcon(typeName);
-                        typeHTML += `
-                            <div class="d-flex align-items-center mx-1">
-                                <img src="${iconType}" alt="${typeName}" title="${typeName}" class="me-1 type-icon ${typeName}">
-                                <small class="text-capitalize">${typeName}</small>
-                            </div>
-                            `;
-                    }
-
-                    const habilidades = pokemon.abilities.map(a => a.ability.name).join(', ');
-
-                    const col = document.createElement('div');
-                    col.className = 'col-6 col-md-4 col-lg-3';
-
-                    col.innerHTML = /*html*/`
-                        <div class="card text-center shadow-sm h-100">
-                        <img src="${pokemon.sprites.front_default}" class="card-img-top p-3" alt="${pokemon.name}">
-                        <div class="card-body">
-                            <h5 class="card-title text-capitalize">${pokemon.name}</h5>
-                            <div class="d-flex justify-content-center flex-wrap mb-2">
-                            ${typeHTML}
-                            </div>
-                            <p class="card-text"><strong>Habilidades:</strong> ${habilidades}</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">ID: #${pokemon.id}</small>
-                        </div>
-                        </div>
-                    `;
-                    container.appendChild(col);
-                } catch (erro) {
-                    console.error(`Erro ao buscar Pokémon com ID ${id}:`, erro);
-                }
-            }
-        }
-
-        function limparPokemon() {
-            sessionStorage.removeItem('pokemonsSalvos');
-            location.reload();
-        }
-
-        window.onload = carregarMeusPokemons;
-    </script>
-
+    <script src="./js/pokedex.js"></script>
     <script src="./js/bootstrap.min.js"></script>
 </body>
 

@@ -7,7 +7,6 @@
     <title>Consultar Pokémon</title>
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <script src="./js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -67,6 +66,16 @@
     </section>
 
     <script src="./js/pokedex.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('entrada').addEventListener("keydown", (event) => {
+            if (event.code == 'Enter') {
+                buscarPokemonCompleto();
+            }
+        });
+    </script>
+
 </body>
 
 </html>
