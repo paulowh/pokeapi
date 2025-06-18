@@ -69,10 +69,10 @@ function buscarPokemonCompleto(valor = null) {
                 }
             }
 
-            resultado.innerHTML = `
+            resultado.innerHTML = /*html*/`
                 <article class="pokemon-card p-3">
                     <div class="card-top-actions d-flex justify-content-end mb-2">
-                        <button class="btn btn-salvar-pokemon" onclick="salvarPokemon(${pokemon.id})"">Salvar</button>
+                        <button class="btn btn-salvar-pokemon" onclick="salvarPokemon(${pokemon.id})">Salvar</button>
                     </div>
                     <header class="text-center mb-3">
                         <div class="pokemon-images mb-2">
@@ -112,13 +112,12 @@ function buscarPokemonCompleto(valor = null) {
                     </section>
                 </article>
                 `;
-
         })
         .catch(() => {
             resultado.innerHTML = `
-                < div class="alert alert-danger text-center" >
+                <div class="alert alert-danger text-center" >
                     Erro ao buscar o Pokémon.
-            </div > `;
+                </div > `;
         });
 
 }
