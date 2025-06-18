@@ -1,5 +1,3 @@
-
-
 .pokemon-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -40,12 +38,10 @@
     color: #000;
 }
 
-/* ID do Pokémon */
 .pokedex .pokemon-id {
     color: #666;
 }
 
-/* Imagens do Pokémon */
 .pokedex .pokemon-images {
     display: flex;
     justify-content: center;
@@ -59,16 +55,14 @@
     object-fit: contain;
 }
 
-/* Títulos das seções */
 .pokedex .pokemon-section-title {
     color: #000;
     font-weight: 600;
     margin-bottom: 0.4rem;
 }
 
-/* Lista com informações básicas */
 .pokedex .pokemon-info-list {
-    
+
     display: flex;
     justify-content: space-between;
     padding-left: 0;
@@ -96,23 +90,35 @@
     color: #222;
 }
 
-/* Fonte padrão para listas informativas e de status */
 .pokedex .pokemon-info-list li,
 .pokedex .pokemon-status-item {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 .pokedex .btn-salvar-pokemon {
-  background-color: #3b4cca;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  font-weight: 600;
+    background-color: #3b4cca;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .pokedex .btn-salvar-pokemon:hover {
-  background-color: #2a3791;
+    background-color: #2a3791;
+}
+
+img.type-icon {
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    transition: 200ms all;
+}
+
+img.type-icon:hover {
+    filter: saturate(150%);
+    transform: scale(1.1);
+    cursor: pointer;
 }
