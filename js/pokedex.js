@@ -1,4 +1,31 @@
 // functions
+function criarHeader() {
+    fetch('./template/header.html')
+        .then(response => response.text())
+        .then(html => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const template = tempDiv.querySelector('#header-template');
+            const clone = template.content.cloneNode(true);
+
+            const headerElement = clone.querySelector('header');
+            document.body.prepend(clone);
+
+            // Espera o próximo frame para garantir inserção
+            requestAnimationFrame(() => {
+                document.body.classList.add('loaded'); // libera conteúdo
+                document.getElementById('preloader').classList.add('hidden'); // esconde o loading
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar o header:', error);
+            document.body.classList.add('loaded');
+            document.getElementById('preloader').classList.add('hidden');
+        });
+}
+
+document.addEventListener('DOMContentLoaded', criarHeader);
+
 function getIcon(type) {
     return `./img/icons/${type}.svg`;
 }
@@ -215,4 +242,3 @@ async function loadPokemon() {
         pokedex.appendChild(col);
     }
 }
-

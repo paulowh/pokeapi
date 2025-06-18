@@ -1,3 +1,24 @@
+#preloader {
+    position: fixed;
+    inset: 0;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Oculta conteúdo até estar pronto */
+body:not(.loaded) main {
+    visibility: hidden;
+}
+
 .pokemon-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
