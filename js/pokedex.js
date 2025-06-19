@@ -151,6 +151,54 @@ function buscarPokemonAleatorio() {
     buscarPokemonCompleto(numero);
 }
 
+//mini-game
+async function carregarPokemonOculto() {
+    const id = Math.floor(Math.random() * 151) + 1;
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const data = await res.json();
+
+    pokemonAtual = data.name.toLowerCase();
+
+    const container = document.getElementById('container-pokemon');
+    container.innerHTML = `
+        <img src="${data.sprites.other['official-artwork'].front_default}" alt="Quem é esse Pokémon?" id="pokemon-imagem" class="oculto">
+    `;
+
+    document.getElementById('resposta').value = '';
+}
+
+function verificarResposta() {
+    const resposta = document.getElementById('resposta').value.trim().toLowerCase();
+    const imagem = document.getElementById('pokemon-imagem');
+
+    if (resposta === pokemonAtual) {
+        imagem.classList.remove('oculto');
+        mostrarAlerta('Acertou! miserável', 'success');
+    } else {
+        mostrarAlerta('Errouuu !!!', 'danger');
+    }
+}
+
+function mostrarAlerta(mensagem, tipo = 'info') {
+    const container = document.getElementById('alert-container');
+    const alerta = document.createElement('div');
+
+    alerta.className = `alert alert-${tipo} alert-dismissible fade show`;
+    alerta.role = 'alert';
+    alerta.innerHTML = `
+        ${mensagem}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    `;
+
+    container.appendChild(alerta);
+
+    setTimeout(() => {
+        alerta.classList.remove('show');
+        alerta.classList.add('hide');
+        setTimeout(() => alerta.remove(), 300); // Espera a transição do fade
+    }, 1000);
+}
+
 //meus-pokemon
 async function carregarMeusPokemon() {
     const container = document.getElementById('lista-pokemons');
