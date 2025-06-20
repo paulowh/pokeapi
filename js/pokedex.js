@@ -90,16 +90,19 @@ function buscarPokemonCompleto(valor = null) {
 
     const numero = Number(busca);
     if (!isNaN(numero)) {
-        if (numero > 151 || numero < 1) {
-            resultado.innerHTML = `<div class="alert alert-warning text-center">Digite um número válido entre 1 e 151.</div>`;
+        if (numero < 1) {
+            // resultado.innerHTML = `<div class="alert alert-warning text-center">Digite um número válido entre 1 e 151.</div>`;
+            resultado.innerHTML = `<div class="alert alert-warning text-center">Digite um número válido maior que 1.</div>`;
             return;
         }
     }
 
     fetchPokemon(busca).then(pokemon => {
         if (!pokemon || pokemon.id > 151) {
-            resultado.innerHTML = `<div class="alert alert-danger text-center">Pokémon não encontrado ou inválido.</div>`;
-            return;
+            // resultado.innerHTML = `<div class="alert alert-danger text-center">Pokémon não encontrado ou inválido.</div>`;
+            // resultado.innerHTML = `<div class="alert alert-danger text-center">Cuidado, depois do 151 não é mais Pokémon.</div>`;
+            mostrarAlerta('Cuidado, depois do 151 não é mais Pokémon.', 'danger');
+            // return;
         }
 
         let tipos = pokemon.types.map(t => t.type.name).join(', ');
@@ -117,7 +120,7 @@ function buscarPokemonCompleto(valor = null) {
                         <img src="${pokemon.sprites.front_shiny}" alt="${pokemon.name} shiny" class="pokedex-img">
                     </div>
                     <h4 class="pokemon-title mb-1">${pokemon.name}</h4>
-                    ${pokemon.id == 7 ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
+                    ${[7, 8, 9].includes(pokemon.id) ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
                     <small class="pokemon-id">#${pokemon.id}</small>
                 </header>
                 <hr>
@@ -125,8 +128,8 @@ function buscarPokemonCompleto(valor = null) {
                     <h6 class="pokemon-section-title">Informações Básicas</h6>
                     <ul class="pokemon-info-list">
                         <li><strong>Tipo:</strong> ${tipos}</li>
-                        <li><strong>Altura:</strong> ${(pokemon.height / 10).toFixed(1)} m</li>
-                        <li><strong>Peso:</strong> ${(pokemon.weight / 10).toFixed(1)} kg</li>
+                        <li><strong>Altura:</strong> ${(pokemon.height / 10).toFixed(1)}m</li>
+                        <li><strong>Peso:</strong> ${(pokemon.weight / 10).toFixed(1)}kg</li>
                     </ul>
                 </section>
                 <hr>
@@ -145,15 +148,16 @@ function buscarPokemonCompleto(valor = null) {
         resultado.innerHTML = `<div class="alert alert-danger text-center">Erro ao buscar o Pokémon.</div>`;
     });
 }
+const TOTALPOKEMON = 1025
 
 function buscarPokemonAleatorio() {
-    const numero = Math.floor(Math.random() * 151) + 1;
+    const numero = Math.floor(Math.random() * TOTALPOKEMON) + 1;
     buscarPokemonCompleto(numero);
 }
 
 //mini-game
 async function carregarPokemonOculto() {
-    const id = Math.floor(Math.random() * 151) + 1;
+    const id = Math.floor(Math.random() * TOTALPOKEMON) + 1;
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await res.json();
 
@@ -196,7 +200,7 @@ function mostrarAlerta(mensagem, tipo = 'info') {
         alerta.classList.remove('show');
         alerta.classList.add('hide');
         setTimeout(() => alerta.remove(), 300); // Espera a transição do fade
-    }, 1000);
+    }, 2000);
 }
 
 //meus-pokemon
@@ -259,7 +263,7 @@ async function carregarMeusPokemon() {
 //listar pokemon
 const pokedex = document.getElementById('pokedex');
 async function loadPokemon() {
-    for (let i = 1; i <= 151; i++) {
+    for (let i = 1; i <= TOTALPOKEMON; i++) {
         const pokemon = await fetchPokemon(i);
         const name = pokemon.name;
         const id = pokemon.id;
