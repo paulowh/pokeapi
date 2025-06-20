@@ -259,11 +259,23 @@ async function carregarMeusPokemon() {
         }
     }
 }
-
+const GERACOES = {
+    1: { inicio: 1, fim: 151 },
+    2: { inicio: 152, fim: 251 },
+    3: { inicio: 252, fim: 386 },
+    4: { inicio: 387, fim: 493 },
+    5: { inicio: 494, fim: 649 },
+    6: { inicio: 650, fim: 721 },
+    7: { inicio: 722, fim: 809 },
+    8: { inicio: 810, fim: 905 },
+    9: { inicio: 906, fim: 1025 } // Atual até 2024
+};
 //listar pokemon
 const pokedex = document.getElementById('pokedex');
-async function loadPokemon() {
-    for (let i = 1; i <= TOTALPOKEMON; i++) {
+async function loadPokemon(gen = 1) {
+    pokedex.innerHTML = ''
+    for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
+
         const pokemon = await fetchPokemon(i);
         const name = pokemon.name;
         const id = pokemon.id;
@@ -272,24 +284,24 @@ async function loadPokemon() {
             const typeName = t.type.name;
             const iconType = getIcon(typeName);
             return `
-        <div class="d-flex align-items-center mx-1">
-          <img src="${iconType}" alt="${typeName}" title="${typeName}" class="me-1 type-icon ${typeName}">
-          <small class="text-capitalize">${typeName}</small>
-        </div>
-      `;
+                <div class="d-flex align-items-center mx-1">
+                <img src="${iconType}" alt="${typeName}" title="${typeName}" class="me-1 type-icon ${typeName}">
+                <small class="text-capitalize">${typeName}</small>
+                </div>
+            `;
         }).join('');
 
         const col = document.createElement('div');
         col.className = 'col-6 col-md-4 col-lg-2 mb-4';
         col.innerHTML = `
-      <figure class="card pokemon-card text-center h-100">
-        <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3">
-        <figcaption class="card-body">
-          <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
-          <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
-        </figcaption>
-      </figure>
-    `;
+            <figure class="card pokemon-card text-center h-100">
+                <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3">
+                <figcaption class="card-body">
+                <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
+                <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
+                </figcaption>
+            </figure>
+            `;
 
         pokedex.appendChild(col);
     }
