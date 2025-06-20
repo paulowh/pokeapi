@@ -30,10 +30,17 @@ function getIcon(type) {
     return `./img/icons/${type}.svg`;
 }
 
-async function fetchPokemon(id) {
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const res = await fetch(url);
-    return await res.json();
+async function fetchPokemon(id, signal = null) {
+    // const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    // const res = await fetch(url);
+    // return await res.json();
+
+    //gambiarra feia do caramba
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { signal })
+        .then(res => {
+            if (!res.ok) throw new Error('Erro na resposta');
+            return res.json();
+        });
 }
 
 function salvarPokemon(id) {
@@ -259,6 +266,11 @@ async function carregarMeusPokemon() {
         }
     }
 }
+
+
+//listar pokemon
+let currentLoadId = 0;
+let abortController = null;
 const GERACOES = {
     1: { inicio: 1, fim: 151 },
     2: { inicio: 152, fim: 251 },
@@ -270,39 +282,61 @@ const GERACOES = {
     8: { inicio: 810, fim: 905 },
     9: { inicio: 906, fim: 1025 } // Atual até 2024
 };
-//listar pokemon
 const pokedex = document.getElementById('pokedex');
+
 async function loadPokemon(gen = 1) {
-    pokedex.innerHTML = ''
+    /*====gambiarra feia do caramba====*/
+    if (abortController) {
+        abortController.abort();
+    }
+    abortController = new AbortController();
+    const signal = abortController.signal;
+    const myLoadId = ++currentLoadId;
+    /*====gambiarra feia do garai====*/
+
+    pokedex.innerHTML = '';
+
     for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
+        if (myLoadId !== currentLoadId) {
+            console.log('Execução cancelada por nova requisição');
+            return;
+        }
+        try {
+            const pokemon = await fetchPokemon(i, signal);
+            const name = pokemon.name;
+            const id = pokemon.id;
 
-        const pokemon = await fetchPokemon(i);
-        const name = pokemon.name;
-        const id = pokemon.id;
+            const typeHTML = pokemon.types.map(t => {
+                const typeName = t.type.name;
+                const iconType = getIcon(typeName);
+                return `
+                    <div class="d-flex align-items-center mx-1">
+                        <img src="${iconType}" alt="${typeName}" title="${typeName}" class="me-1 type-icon ${typeName}">
+                        <small class="text-capitalize">${typeName}</small>
+                    </div>
+                `;
+            }).join('');
 
-        const typeHTML = pokemon.types.map(t => {
-            const typeName = t.type.name;
-            const iconType = getIcon(typeName);
-            return `
-                <div class="d-flex align-items-center mx-1">
-                <img src="${iconType}" alt="${typeName}" title="${typeName}" class="me-1 type-icon ${typeName}">
-                <small class="text-capitalize">${typeName}</small>
-                </div>
+            const col = document.createElement('div');
+            col.className = 'col-6 col-md-4 col-lg-2 mb-4';
+            col.innerHTML = `
+                <figure class="card pokemon-card text-center h-100">
+                    <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3">
+                    <figcaption class="card-body">
+                        <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
+                        <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
+                    </figcaption>
+                </figure>
             `;
-        }).join('');
 
-        const col = document.createElement('div');
-        col.className = 'col-6 col-md-4 col-lg-2 mb-4';
-        col.innerHTML = `
-            <figure class="card pokemon-card text-center h-100">
-                <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3">
-                <figcaption class="card-body">
-                <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
-                <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
-                </figcaption>
-            </figure>
-            `;
-
-        pokedex.appendChild(col);
+            pokedex.appendChild(col);
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Fetch abortado, nova requisição iniciada');
+                return;
+            } else {
+                console.error(`Erro ao carregar Pokémon ID ${i}:`, error);
+            }
+        }
     }
 }
