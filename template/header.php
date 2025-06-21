@@ -20,7 +20,7 @@ include './function.php';
 </head>
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
-<!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
+    <!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
     <!-- <div id="preloader">
         <div class="spinner-border text-danger" role="status">
             <span class="visually-hidden">Carregando...</span>
@@ -72,3 +72,4 @@ include './function.php';
             </div>
         </div>
     </header>
+    <div id="alert-container"></div>

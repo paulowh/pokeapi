@@ -50,9 +50,9 @@ function salvarPokemon(id) {
     if (!pokemons.includes(id)) {
         pokemons.push(id);
         sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
-        console.log(`✅ Pokémon #${id} salvo na sessão!`);
+        mostrarAlerta(`Pokémon #${id} salvo.`, 'success');
     } else {
-        console.log(`ℹ️ Pokémon #${id} já está salvo.`);
+        mostrarAlerta(`Pokémon #${id} já está salvo.`, 'info');
     }
 
     console.log('📦 Lista de Pokémons salvos:', pokemons);
@@ -105,11 +105,10 @@ function buscarPokemonCompleto(valor = null) {
     }
 
     fetchPokemon(busca).then(pokemon => {
-        if (!pokemon || pokemon.id > 151) {
-            // resultado.innerHTML = `<div class="alert alert-danger text-center">Pokémon não encontrado ou inválido.</div>`;
+        if (!pokemon) {
+            resultado.innerHTML = `<div class="alert alert-danger text-center">Pokémon não encontrado ou inválido.</div>`;
             // resultado.innerHTML = `<div class="alert alert-danger text-center">Cuidado, depois do 151 não é mais Pokémon.</div>`;
-            mostrarAlerta('Cuidado, depois do 151 não é mais Pokémon.', 'danger');
-            // return;
+            return;
         }
 
         let tipos = pokemon.types.map(t => t.type.name).join(', ');
@@ -123,8 +122,8 @@ function buscarPokemonCompleto(valor = null) {
                 </div>
                 <header class="text-center mb-3">
                     <div class="pokemon-images mb-2">
-                        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="pokedex-img">
-                        <img src="${pokemon.sprites.front_shiny}" alt="${pokemon.name} shiny" class="pokedex-img">
+                        <img src="${imgArtwork(pokemon.id)}" alt="${pokemon.name}" class="pokedex-img">
+                        <img src="${imgArtwork(pokemon.id, true)}" alt="${pokemon.name} shiny" class="pokedex-img">
                     </div>
                     <h4 class="pokemon-title mb-1">${pokemon.name}</h4>
                     ${[7, 8, 9].includes(pokemon.id) ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
@@ -172,7 +171,7 @@ async function carregarPokemonOculto() {
 
     const container = document.getElementById('container-pokemon');
     container.innerHTML = `
-        <img src="${data.sprites.other['official-artwork'].front_default}" alt="Quem é esse Pokémon?" id="pokemon-imagem" class="oculto">
+        <img src="${imgArtwork(data.id)}" alt="Quem é esse Pokémon?" id="pokemon-imagem" class="oculto">
     `;
 
     document.getElementById('resposta').value = '';
@@ -249,7 +248,7 @@ async function carregarMeusPokemon() {
             col.className = 'col-6 col-md-4 col-lg-3';
             col.innerHTML = /*html */`
                 <div class="card text-center shadow-sm h-100">
-                <img src="${pokemon.sprites.front_default}" class="card-img-top p-3" alt="${pokemon.name}">
+                <img src="${imgArtwork(pokemon.id)}" class="card-img-top p-3" alt="${pokemon.name}">
                 <div class="card-body">
                     <h5 class="card-title text-capitalize">${pokemon.name}</h5>
                     <div class="d-flex justify-content-center flex-wrap mb-2">${typeHTML}</div>
@@ -287,6 +286,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const pokedex = document.getElementById('pokedex');
 });
 
+function imgArtwork(id, shiny = false) {
+    return shiny
+        ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`
+        : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+}
+
+
 async function loadPokemon(gen = 1) {
     /*====gambiarra feia do caramba====*/
     if (abortController) {
@@ -321,14 +327,20 @@ async function loadPokemon(gen = 1) {
             }).join('');
 
             const col = document.createElement('div');
-            col.className = 'col-6 col-md-4 col-lg-2 mb-4';
-            col.innerHTML = `
+            col.className = 'col-6 col-md-4 col-lg-3 col-xl-2 mb-4';
+            col.innerHTML = /*html*/`
                 <figure class="card pokemon-card text-center h-100">
-                    <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3">
-                    <figcaption class="card-body">
-                        <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
-                        <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
-                    </figcaption>
+                <img src="${imgArtwork(id)}" alt="${name}" class="pokemon-img p-3">
+                <!--<img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${name}" class="pokemon-img p-3">
+                <img src="${pokemon.sprites.front_default}" alt="${name}" class="pokemon-img p-3"> -->
+                
+                <figcaption class="card-body">
+                <h6 class="card-title mb-1 pokemon-title">${name} #${id}</h6>
+                <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
+                </figcaption>
+                <div class="card-top-actions d-flex justify-content-end mb-2 p-1">
+                    <button class="btn btn-secondary btn-sm" onclick="salvarPokemon(${pokemon.id})">Salvar</button>
+                </div>
                 </figure>
             `;
 
