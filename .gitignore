@@ -1,0 +1,17 @@
+/vendor/
+
+composer.lock
+
+*.log
+*.cache
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+uploads/
