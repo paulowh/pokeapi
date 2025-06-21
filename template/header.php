@@ -15,8 +15,9 @@ include './function.php';
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
 
-    <script src="./js/pokedex.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/pokedex.js"></script>
 </head>
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
