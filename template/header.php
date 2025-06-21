@@ -28,7 +28,7 @@ include './function.php';
     </div> -->
     <header class="navbar navbar-light bg-white border-bottom shadow-sm">
         <nav class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.php">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="./">
                 <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2" />
                 PokéApp
             </a>
@@ -37,17 +37,17 @@ include './function.php';
                 <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 mb-0">
-                <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./index.php">Pokédex</a></li>
+                <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./listar-pokemon.php">Listar</a>
+                    <a class="nav-link text-dark fw-semibold" href="./listar-pokemon">Listar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./mini-game.php">Mini Game</a>
+                    <a class="nav-link text-dark fw-semibold" href="./mini-game">Mini Game</a>
                 </li>
 
             </ul>
             <div class="d-none d-lg-block">
-                <a href="./meus-pokemon.php" class="btn btn-dark">Meus Pokémon</a>
+                <a href="./meus-pokemon" class="btn btn-dark">Meus Pokémon</a>
             </div>
         </nav>
 
@@ -58,15 +58,15 @@ include './function.php';
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav gap-2">
-                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./index.php">Pokédex</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./listar-pokemon.php">Listar</a>
+                        <a class="nav-link text-dark fw-semibold" href="./listar-pokemon">Listar</a>
                     </li>
                     <li class="nav-item mt-3">
-                        <a href="./meus-pokemon.php" class="btn btn-dark w-100">Meus Pokémon</a>
+                        <a href="./meus-pokemon" class="btn btn-dark w-100">Meus Pokémon</a>
                     </li>
                     <li class="nav-item mt-3">
-                        <a href="./mini-game.php" class="btn btn-dark w-100">Mini Game</a>
+                        <a href="./mini-game" class="btn btn-dark w-100">Mini Game</a>
                     </li>
                 </ul>
             </div>
