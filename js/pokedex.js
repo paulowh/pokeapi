@@ -104,7 +104,7 @@ function buscarPokemonCompleto(valor = null) {
             };
 
             $.ajax({
-                url: '/render.php',
+                url: './render',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
