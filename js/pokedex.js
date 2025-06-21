@@ -24,7 +24,7 @@ function criarHeader() {
         });
 }
 
-document.addEventListener('DOMContentLoaded', criarHeader);
+// document.addEventListener('DOMContentLoaded', criarHeader);
 
 function getIcon(type) {
     return `./img/icons/${type}.svg`;
@@ -282,7 +282,10 @@ const GERACOES = {
     8: { inicio: 810, fim: 905 },
     9: { inicio: 906, fim: 1025 } // Atual até 2024
 };
-const pokedex = document.getElementById('pokedex');
+
+window.addEventListener('DOMContentLoaded', () => {
+    const pokedex = document.getElementById('pokedex');
+});
 
 async function loadPokemon(gen = 1) {
     /*====gambiarra feia do caramba====*/

@@ -15,9 +15,9 @@
 }
 
 /* Oculta conteúdo até estar pronto */
-body:not(.loaded) main {
+/* body:not(.loaded) main {
     visibility: hidden;
-}
+} */
 
 .pokemon-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
