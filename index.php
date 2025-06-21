@@ -19,3 +19,8 @@ include_once __DIR__ . '/template/header.php';
         <div class="col-md-6 pokedex" id="resultado"></div>
     </main>
 </section>
+
+<?php 
+
+echo render('teste',['titulo'=>'ppppppppppppp']);
+?>

@@ -1,6 +1,5 @@
 <?php
-include './function.php';
-
+require_once __DIR__ . '/../function.php';
 ?>
 
 <!DOCTYPE html>

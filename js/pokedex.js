@@ -88,44 +88,36 @@ function buscarPokemonCompleto(valor = null) {
                 return;
             }
 
-            const tipos = pokemon.types.map(t => t.type.name).join(', ');
-            const status = pokemon.stats.map(s => `<li class="pokemon-status-item">${s.stat.name.toUpperCase()}: ${s.base_stat}</li>`).join('');
-            const habilidades = pokemon.abilities.map(h => h.ability.name).join(', ');
+            // Prepara os dados para enviar ao PHP + Twig
+            const data = {
+                id: pokemon.id,
+                nome: pokemon.name,
+                tipos: pokemon.types.map(t => t.type.name),
+                habilidades: pokemon.abilities.map(h => h.ability.name),
+                stats: pokemon.stats.map(s => ({
+                    nome: s.stat.name,
+                    valor: s.base_stat
+                })),
+                altura: (pokemon.height / 10).toFixed(1),
+                peso: (pokemon.weight / 10).toFixed(1),
+                shiny: [7, 8, 9].includes(pokemon.id),
+            };
 
-            $('#resultado').html(`
-                <article class="pokemon-card p-3">
-                    <div class="card-top-actions d-flex justify-content-end mb-2">
-                        <button class="btn btn-salvar-pokemon" onclick="salvarPokemon(${pokemon.id})">Salvar</button>
-                    </div>
-                    <header class="text-center mb-3">
-                        <div class="pokemon-images mb-2">
-                            <img src="${imgArtwork(pokemon.id)}" alt="${pokemon.name}" class="pokedex-img">
-                            <img src="${imgArtwork(pokemon.id, true)}" alt="${pokemon.name} shiny" class="pokedex-img">
-                        </div>
-                        <h4 class="pokemon-title mb-1">${pokemon.name}</h4>
-                        ${[7, 8, 9].includes(pokemon.id) ? "<h4 class='pokemon-title mb-1'>O Melhor de todos</h4>" : ''}
-                        <small class="pokemon-id">#${pokemon.id}</small>
-                    </header>
-                    <hr>
-                    <section class="pokemon-detalhes mb-3">
-                        <h6 class="pokemon-section-title">Informações Básicas</h6>
-                        <ul class="pokemon-info-list">
-                            <li><strong>Tipo:</strong> ${tipos}</li>
-                            <li><strong>Altura:</strong> ${(pokemon.height / 10).toFixed(1)}m</li>
-                            <li><strong>Peso:</strong> ${(pokemon.weight / 10).toFixed(1)}kg</li>
-                        </ul>
-                    </section>
-                    <hr>
-                    <section class="pokemon-habilidades mb-3">
-                        <h6 class="pokemon-section-title">Habilidades</h6>
-                        <p class="mb-0">${habilidades}</p>
-                    </section>
-                    <hr>
-                    <section class="pokemon-status">
-                        <h6 class="pokemon-section-title">Estatísticas</h6>
-                        <ul class="pokemon-status-list">${status}</ul>
-                    </section>
-                </article>`);
+            $.ajax({
+                url: '/render.php',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    template: '/pokemon-card',
+                    data: data
+                }),
+                success: function (html) {
+                    $('#resultado').html(html);
+                },
+                error: function () {
+                    $('#resultado').html('<div class="alert alert-danger text-center">Erro ao carregar os dados do Pokémon.</div>');
+                }
+            });
         })
         .fail(() => {
             $('#resultado').html('<div class="alert alert-danger text-center">Erro ao buscar o Pokémon.</div>');
