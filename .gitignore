@@ -15,3 +15,5 @@ Thumbs.db
 *.sublime-workspace
 
 uploads/
+
+./fiveserver.config.js
