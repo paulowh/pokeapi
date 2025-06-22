@@ -6,8 +6,8 @@ include_once __DIR__ . '/function.php';
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (
-    !isset($input['template']) || 
-    !is_string($input['template']) || 
+    !isset($input['template']) ||
+    !is_string($input['template']) ||
     empty($input['template'])
 ) {
     http_response_code(400);

@@ -192,47 +192,58 @@ async function carregarMeusPokemon() {
     }
 }
 
-function loadPokemon(gen = 1) {
-    if (currentRequest) currentRequest.abort();
-    currentRequest = new AbortController();
-    const signal = currentRequest.signal;
+let currentRequests = [];
+
+async function loadPokemon(gen = 1) {
+
+    for (const req of currentRequests) {
+        req.abort();
+    }
+    currentRequests = [];
+
     const myLoadId = ++currentLoadId;
 
     const $pokedex = $('#pokedex');
     $pokedex.empty();
 
-    (async () => {
-        for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
-            if (myLoadId !== currentLoadId) return;
+    for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
+        if (myLoadId !== currentLoadId) return;
 
-            try {
-                const pokemon = await fetchPokemon(i);
-                const typeHTML = pokemon.types.map(t => `
-                    <div class="d-flex align-items-center mx-1">
-                        <img src="${getIcon(t.type.name)}" alt="${t.type.name}" title="${t.type.name}" class="me-1 type-icon ${t.type.name}">
-                        <small class="text-capitalize">${t.type.name}</small>
-                    </div>`).join('');
+        const pokemon = await fetchPokemon(i);
+        const types = pokemon.types.map(t => ({
+            nome: t.type.name,
+            icon: getIcon(t.type.name)
+        }));
 
-                const col = $('<div>').addClass('col-6 col-md-4 col-lg-3 col-xl-2 mb-4').html(`
-                    <figure class="card pokemon-card text-center h-100">
-                        <img src="${imgArtwork(pokemon.id)}" alt="${pokemon.name}" class="pokemon-img p-3">
-                        <figcaption class="card-body">
-                            <h6 class="card-title mb-1 pokemon-title">${pokemon.name} #${pokemon.id}</h6>
-                            <div class="d-flex justify-content-center flex-wrap">${typeHTML}</div>
-                        </figcaption>
-                        <div class="card-top-actions d-flex justify-content-end mb-2 p-1">
-                            <button class="btn btn-secondary btn-sm" onclick="salvarPokemon(${pokemon.id})">Salvar</button>
-                        </div>
-                    </figure>`);
-
-                $pokedex.append(col);
-            } catch (error) {
-                if (error.name !== 'AbortError') {
-                    console.error(`Erro ao carregar Pokémon ID ${i}:`, error);
+        const req = $.ajax({
+            url: './render',
+            method: 'POST',
+            dataType: 'html',
+            data: JSON.stringify({
+                template: 'pokemon-card-lista',
+                data: {
+                    id: pokemon.id,
+                    nome: pokemon.name,
+                    types: types
+                }
+            }),
+            contentType: 'application/json',
+            success: function (html) {
+                console.log(i)
+                if (myLoadId === currentLoadId) {
+                    $pokedex.append($('<div>').addClass('col-6 col-md-4 col-lg-3 col-xl-2 mb-4').html(html));
+                }
+            },
+            error: function (xhr, status) {
+                if (status !== 'abort') {
+                    console.error(`Erro ao renderizar Pokémon ID ${i}`);
                 }
             }
-        }
-    })();
+        });
+
+        currentRequests.push(req);
+
+    }
 }
 
 $(() => {

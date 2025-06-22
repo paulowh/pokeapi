@@ -10,7 +10,8 @@ $twig = new \Twig\Environment($loader, [
 
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-function render(string $template, array $data = []): string {
+function render(string $template, array $data = []): string
+{
     global $twig;
 
     if (!str_ends_with($template, '.twig')) {
@@ -18,4 +19,10 @@ function render(string $template, array $data = []): string {
     }
 
     return $twig->render($template, $data);
+}
+
+
+function imgArtwork($id)
+{
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png`;
 }
