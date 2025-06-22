@@ -17,7 +17,14 @@ include_once __DIR__ . '/template/header.php';
         <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(8)">Geração 8</button>
         <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(9)">Geração 9</button>
     </div>
-    <main class="row" id="pokedex"></main>
+
+    <main class="row gy-4 position-relative" id="pokedex">
+        <div id="preloader" class="preloader-overlay">
+            <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+        </div>
+    </main>
 </section>
 
 </body>

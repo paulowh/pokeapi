@@ -21,11 +21,7 @@ require_once __DIR__ . '/../function.php';
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
     <!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
-    <!-- <div id="preloader">
-        <div class="spinner-border text-danger" role="status">
-            <span class="visually-hidden">Carregando...</span>
-        </div>
-    </div> -->
+
     <header class="navbar navbar-light bg-white border-bottom shadow-sm">
         <nav class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="./">

@@ -108,7 +108,7 @@ function buscarPokemonCompleto(valor = null) {
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    template: '/pokemon-card',
+                    template: '/pokemon-ficha',
                     data: data
                 }),
                 success: function (html) {
@@ -165,27 +165,35 @@ async function carregarMeusPokemon() {
     for (const id of ids) {
         try {
             const pokemon = await fetchPokemon(id);
-            const typeHTML = pokemon.types.map(t => `
-                <div class="d-flex align-items-center mx-1">
-                    <img src="${getIcon(t.type.name)}" alt="${t.type.name}" title="${t.type.name}" class="me-1 type-icon ${t.type.name}">
-                    <small class="text-capitalize">${t.type.name}</small>
-                </div>`).join('');
-
+            const types = pokemon.types.map(t => ({
+                nome: t.type.name,
+                icon: getIcon(t.type.name)
+            }));
             const habilidades = pokemon.abilities.map(a => a.ability.name).join(', ');
 
-            const col = $('<div>').addClass('col-6 col-md-4 col-lg-3').html(`
-                <div class="card text-center shadow-sm h-100">
-                    <img src="${imgArtwork(pokemon.id)}" class="card-img-top p-3" alt="${pokemon.name}">
-                    <div class="card-body">
-                        <h5 class="card-title text-capitalize">${pokemon.name}</h5>
-                        <div class="d-flex justify-content-center flex-wrap mb-2">${typeHTML}</div>
-                        <p class="card-text"><strong>Habilidades:</strong> ${habilidades}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">ID: #${pokemon.id}</small>
-                    </div>
-                </div>`);
-            container.append(col);
+            $.ajax({
+                url: './render',
+                method: 'POST',
+                dataType: 'html',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    template: 'pokemon-card',
+                    data: {
+                        id: pokemon.id,
+                        nome: pokemon.name,
+                        img: imgArtwork(pokemon.id),
+                        types: types,
+                        habilidades: habilidades
+                    }
+                }),
+                success: function (html) {
+                    container.append(html);
+                },
+                error: function () {
+                    console.error(`Erro ao renderizar Pokémon salvo ID ${id}`);
+                }
+            });
+
         } catch (erro) {
             console.error(`Erro ao buscar Pokémon com ID ${id}:`, erro);
         }
@@ -195,17 +203,14 @@ async function carregarMeusPokemon() {
 let currentRequests = [];
 
 async function loadPokemon(gen = 1) {
-
-    for (const req of currentRequests) {
-        req.abort();
-    }
+    for (const req of currentRequests) req.abort();
     currentRequests = [];
 
     const myLoadId = ++currentLoadId;
+    const $pokedex = $('#pokedex').empty();
+    const cards = [];
 
-    const $pokedex = $('#pokedex');
-    $pokedex.empty();
-
+    $('#preloader').removeClass('hidden').show();
     for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
         if (myLoadId !== currentLoadId) return;
 
@@ -220,19 +225,28 @@ async function loadPokemon(gen = 1) {
             method: 'POST',
             dataType: 'html',
             data: JSON.stringify({
-                template: 'pokemon-card-lista',
+                template: 'pokemon-card',
                 data: {
                     id: pokemon.id,
                     nome: pokemon.name,
-                    types: types
+                    types: types,
+                    img: imgArtwork(pokemon.id)
                 }
             }),
             contentType: 'application/json',
             success: function (html) {
-                console.log(i)
                 if (myLoadId === currentLoadId) {
-                    $pokedex.append($('<div>').addClass('col-6 col-md-4 col-lg-3 col-xl-2 mb-4').html(html));
+                    cards.push({ id: pokemon.id, html });
+
+                    if (cards.length === GERACOES[gen].fim - GERACOES[gen].inicio + 1) {
+                        cards.sort((a, b) => a.id - b.id);
+                        for (const card of cards) {
+                            $pokedex.append(card.html);
+                        }
+                    }
+                    // $('#preloader').addClass('hidden');
                 }
+
             },
             error: function (xhr, status) {
                 if (status !== 'abort') {
@@ -240,11 +254,11 @@ async function loadPokemon(gen = 1) {
                 }
             }
         });
-
         currentRequests.push(req);
-
     }
+    $('#preloader').addClass('hidden');
 }
+
 
 $(() => {
     // Iniciar ao carregar
