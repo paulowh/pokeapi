@@ -42,15 +42,14 @@
 					<div class="d-flex align-items-center rounded px-2 py-1 text-white text-capitalize move-box {{ m.tipo }} tipo-card">
 						<img src="./img/icons/{{ m.tipo }}.svg" alt="{{ m.tipo }}" class="me-2 type-icon" width="20">
 						<div class="small fw-semibold">
-							{{ m.nome }}
-							<span class="fw-normal">({{ m.origem }})</span>
+							<span>{{ m.nome }}</span>
+							<span class="d-block fw-normal">({{ m.origem }})</span>
 						</div>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
 	</section>
-
 
 	<hr>
 	<section class="pokemon-papel mb-3">
