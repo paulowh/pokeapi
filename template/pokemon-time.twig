@@ -1,0 +1,61 @@
+<article class="pokemon-card p-3 h-100">
+	<header class="text-center mb-3">
+		<div class="evolution-chart d-flex flex-column align-items-center mb-3">
+			<div class="d-flex align-items-end justify-content-center evolution-line">
+				{% for evo in evolucoes_anteriores %}
+					<div class="text-center mx-3 evo-stage">
+						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ evo.id }}.png" alt="{{ evo.nome }}" class="evo-img img-fluid {{ loop.last ? 'evo-final' : '' }}">
+						<small class="text-capitalize d-block mt-1">{{ evo.nome }}</small>
+
+					</div>
+
+					{% if not loop.last %}
+						<div class="d-flex flex-column align-items-center mx-2 evo-arrow">
+							<div class="arrow-diagonal">↘</div>
+							<small class="text-muted">{{ evolucoes_anteriores[loop.index].nivel }}</small>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+
+
+		<h4 class="pokemon-title mb-1 mt-2">{{ nome }}</h4>
+		<small class="pokemon-id">#{{ id }}</small>
+
+		<div class="d-flex justify-content-center flex-wrap">
+			{% for type in types %}
+				<div class="d-flex align-items-center me-2 mb-1">
+					<img src="./img/icons/{{ type }}.svg" alt="{{ type }}" title="{{ type }}" class="me-1 type-icon {{ type }}">
+					<small class="text-capitalize">{{ type }}</small>
+				</div>
+			{% endfor %}
+		</div>
+	</header>
+
+	<hr>
+	<section class="pokemon-habilidades mb-3">
+		<h6 class="pokemon-section-title">Movimentos Sugeridos</h6>
+		<div class="row g-2">
+			{% for m in movimentos %}
+				<div class="col-6">
+					<div class="d-flex align-items-center rounded px-2 py-1 text-white text-capitalize move-box {{ m.tipo }} tipo-card">
+						<img src="./img/icons/{{ m.tipo }}.svg" alt="{{ m.tipo }}" class="me-2 type-icon" width="20">
+						<div class="small fw-semibold">
+							{{ m.nome }}
+							<span class="fw-normal">({{ m.origem }})</span>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+
+
+	<hr>
+	<section class="pokemon-papel mb-3">
+		<h6 class="pokemon-section-title">Função no Time / Onde Encontrar</h6>
+		<p>{{ papel }},
+			{{ onde_encontrar }}</p>
+	</section>
+</article>

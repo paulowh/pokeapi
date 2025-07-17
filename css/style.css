@@ -232,3 +232,110 @@ img.type-icon:hover {
     z-index: 1050;
     max-width: 90vw;
 }
+
+.move-box {
+    background-color: #ccc;
+    transition: transform 0.2s ease;
+}
+
+.move-box:hover {
+    transform: scale(1.02);
+}
+
+/* Exemplo de cores por tipo */
+.move-box.fire {
+    background-color: #f08030;
+}
+
+.move-box.water {
+    background-color: #6890f0;
+}
+
+.move-box.grass {
+    background-color: #78c850;
+}
+
+.move-box.electric {
+    background-color: #f8d030;
+}
+
+.move-box.ice {
+    background-color: #98d8d8;
+}
+
+.move-box.psychic {
+    background-color: #f85888;
+}
+
+.move-box.dark {
+    background-color: #705848;
+}
+
+.move-box.fighting {
+    background-color: #c03028;
+}
+
+.move-box.flying {
+    background-color: #a890f0;
+}
+
+.move-box.dragon {
+    background-color: #7038f8;
+}
+
+.move-box.steel {
+    background-color: #b8b8d0;
+}
+
+.move-box.ghost {
+    background-color: #705898;
+}
+
+.move-box.bug {
+    background-color: #a8b820;
+}
+
+.move-box.normal {
+    background-color: #a8a878;
+}
+
+.move-box.poison {
+    background-color: #a040a0;
+}
+
+.move-box.rock {
+    background-color: #b8a038;
+}
+
+.move-box.ground {
+    background-color: #e0c068;
+}
+
+.evolution-chart {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.evolution-chart {
+    gap: 1rem;
+}
+
+.evolution-line {
+    flex-wrap: nowrap;
+}
+
+.evo-img {
+    max-height: 72px;
+    transition: transform 0.3s;
+}
+
+.evo-final {
+    transform: scale(1.15);
+}
+
+.arrow-diagonal {
+    font-size: 1.5rem;
+    line-height: 1;
+    transform: rotate(300deg);
+    /* ajusta o estilo da seta */
+}

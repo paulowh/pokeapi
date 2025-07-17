@@ -40,6 +40,9 @@ require_once __DIR__ . '/../function.php';
                 <li class="nav-item">
                     <a class="nav-link text-dark fw-semibold" href="./mini-game">Mini Game</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-semibold" href="./detonado">Detonado</a>
+                </li>
 
             </ul>
             <div class="d-none d-lg-block">

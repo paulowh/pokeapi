@@ -210,7 +210,7 @@ async function loadPokemon(gen = 1) {
     const $pokedex = $('#pokedex').empty();
     const cards = [];
 
-    $('#preloader').removeClass('hidden').show();
+    // $('#preloader').removeClass('hidden').show();
     for (let i = GERACOES[gen].inicio; i <= GERACOES[gen].fim; i++) {
         if (myLoadId !== currentLoadId) return;
 
@@ -256,8 +256,65 @@ async function loadPokemon(gen = 1) {
         });
         currentRequests.push(req);
     }
-    $('#preloader').addClass('hidden');
+    // $('#preloader').addClass('hidden');
 }
+
+async function loadPokemonBlack2() {
+    const $pokedex = $('#pokedex').empty();
+
+    try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokedex/9');
+        const data = await response.json();
+        const pokemonEntries = data.pokemon_entries;
+
+        // Cria uma lista de promises para buscar os dados e montar os cards
+        const cardPromises = pokemonEntries.map(async (entry) => {
+            const speciesUrl = entry.pokemon_species.url;
+            const id = speciesUrl.split('/').filter(Boolean).pop();
+            const indexUnova = entry.entry_number;
+
+            const pokemon = await fetchPokemon(id);
+
+            const types = pokemon.types.map(t => ({
+                nome: t.type.name,
+                icon: getIcon(t.type.name)
+            }));
+
+            const html = await $.ajax({
+                url: './render',
+                method: 'POST',
+                dataType: 'html',
+                data: JSON.stringify({
+                    template: 'pokemon-card',
+                    data: {
+                        id: pokemon.id,
+                        nome: pokemon.name,
+                        types: types,
+                        img: imgArtwork(pokemon.id),
+                        id_unova: indexUnova
+                    }
+                }),
+                contentType: 'application/json'
+            });
+
+            return { indexUnova, html };
+        });
+
+        // Aguarda todas as promessas e ordena os cards pela ordem da Pokédex
+        const cards = await Promise.all(cardPromises);
+        cards.sort((a, b) => a.indexUnova - b.indexUnova);
+
+        // Exibe os cards na ordem correta
+        for (const card of cards) {
+            $pokedex.append(card.html);
+        }
+
+    } catch (err) {
+        console.error('Erro ao carregar Pokédex de Black 2:', err);
+        $pokedex.html('<div class="alert alert-danger text-center">Erro ao carregar os Pokémon.</div>');
+    }
+}
+
 
 
 $(() => {
