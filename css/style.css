@@ -233,10 +233,34 @@ img.type-icon:hover {
     max-width: 90vw;
 }
 
+/* Estilo base para todos os tamanhos */
 .move-box {
-    background-color: #ccc;
-    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: normal;
+    min-height: 72px;
+    /* base para desktop */
 }
+
+/* Ajuste específico para telas pequenas */
+@media (max-width: 576px) {
+    .move-box {
+        min-height: 96px;
+        /* força ao menos 3 linhas no mobile */
+        align-items: flex-start;
+        /* alinha conteúdo ao topo */
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .move-box .fw-semibold {
+        line-height: 1.3;
+        max-height: 3.9em;
+        overflow: hidden;
+    }
+}
+
 
 .move-box:hover {
     transform: scale(1.02);

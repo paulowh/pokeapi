@@ -66,7 +66,7 @@ $timePokemon = [
             ['nome' => 'Flamethrower', 'tipo' => 'fire', 'origem' => 'Lv. 49 (Growlithe)'],
             ['nome' => 'Toxic', 'tipo' => 'poison', 'origem' => 'TM06 (Celadon Store)'],
             ['nome' => 'Iron Tail', 'tipo' => 'steel', 'origem' => 'TM23 (Silph Co.)'],
-            ['nome' => 'Roar', 'tipo' => 'normal', 'origem' => 'TM05 (Route 4 / Celadon Store)']
+            ['nome' => 'Roar', 'tipo' => 'normal', 'origem' => 'TM05 (Route 4/Celadon Store)']
         ],
         'papel' => 'Atacante físico rápido com cobertura contra diversos tipos.',
         'onde_encontrar' => 'Rotas 7 e 8 (perto de Celadon City)',

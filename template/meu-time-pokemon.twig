@@ -18,11 +18,6 @@
 				{% endfor %}
 			</div>
 		</div>
-
-
-		<h4 class="pokemon-title mb-1 mt-2">{{ nome }}</h4>
-		<small class="pokemon-id">#{{ id }}</small>
-
 		<div class="d-flex justify-content-center flex-wrap">
 			{% for type in types %}
 				<div class="d-flex align-items-center me-2 mb-1">
@@ -31,6 +26,10 @@
 				</div>
 			{% endfor %}
 		</div>
+
+		<h4 class="pokemon-title mb-1 mt-2">{{ nome }}</h4>
+
+		<small class="pokemon-id">#{{ id }}</small>
 	</header>
 
 	<hr>
