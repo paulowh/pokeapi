@@ -31,38 +31,6 @@ require_once __DIR__ . '/../function.php';
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/pokedex.js"></script>
 </head>
-<script>
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-
-        if (confirm('Deseja adicionar este site à tela inicial?')) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuário aceitou adicionar à tela inicial');
-                } else {
-                    console.log('Usuário recusou adicionar à tela inicial');
-                }
-                deferredPrompt = null;
-            });
-        }
-    });
-
-    function isIos() {
-        return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
-    }
-
-    function isInStandaloneMode() {
-        return ('standalone' in window.navigator) && (window.navigator.standalone);
-    }
-
-    if (isIos() && !isInStandaloneMode()) {
-        alert('Para adicionar este site à sua tela inicial, toque no botão de compartilhar e depois em "Adicionar à Tela de Início".');
-    }
-</script>
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
     <!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
