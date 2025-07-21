@@ -2170,4 +2170,15 @@
 			localStorage.setItem(storageKey, e.target.id);
 		});
 	});
+
+	document.querySelectorAll('.accordion-collapse').forEach((collapseEl) => {
+		collapseEl.addEventListener('shown.bs.collapse', function () {
+			// Quando abrir o accordion, faz scroll suave para o topo do item pai (accordion-item)
+			const accordionItem = this.closest('.accordion-item');
+			if (accordionItem) {
+				accordionItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+		});
+	});
+
 </script>
