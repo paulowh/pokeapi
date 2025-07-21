@@ -62,8 +62,14 @@ require_once __DIR__ . '/../function.php';
                     <li class="nav-item">
                         <a class="nav-link text-dark fw-semibold" href="./listar-pokemon">Listar</a>
                     </li>
-                    <li class="nav-item mt-3">
-                        <a href="./meus-pokemon" class="btn btn-dark w-100">Meus Pokémon</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="./meus-pokemon">Listar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="./meus-pokemon">Meus Pokémon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="./detonado">Detonado</a>
                     </li>
                     <li class="nav-item mt-3">
                         <a href="./mini-game" class="btn btn-dark w-100">Mini Game</a>
