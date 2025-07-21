@@ -10,6 +10,18 @@ require_once __DIR__ . '/../function.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= isset($tittle) && !empty($tittle) ? $tittle : 'Pokemon' ?></title>
 
+    <!-- Manifesto PWA -->
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- Ícones Apple -->
+    <link rel="apple-touch-icon" href="./img/icon-192.png">
+
+    <!-- Meta Tags para iPhone -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Detonado Pokémon">
+    <meta name="theme-color" content="#345952">
+
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
 
