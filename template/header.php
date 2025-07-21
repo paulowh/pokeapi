@@ -12,6 +12,7 @@ require_once __DIR__ . '/../function.php';
 
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/jquery-3.7.1.min.js"></script>

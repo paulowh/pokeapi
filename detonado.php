@@ -6,7 +6,7 @@ include_once __DIR__ . '/template/header.php';
 $timePokemon = [
     [
         'id' => 7,
-        'nome' => 'Squirtle',
+        'nome' => 'Blastoise',
         'types' => ['water'],
         'movimentos' => [
             ['nome' => 'Surf', 'tipo' => 'water', 'origem' => 'HM03 (Safari Zone)'],
@@ -24,7 +24,7 @@ $timePokemon = [
     ],
     [
         'id' => 63,
-        'nome' => 'Abra',
+        'nome' => 'Alakazam',
         'types' => ['psychic'],
         'movimentos' => [
             ['nome' => 'Psychic', 'tipo' => 'psychic', 'origem' => 'Lv. 38 (como Alakazam)'],
@@ -42,7 +42,7 @@ $timePokemon = [
     ],
     [
         'id' => 94,
-        'nome' => 'Gastly',
+        'nome' => 'Gengar',
         'types' => ['ghost', 'poison'],
         'movimentos' => [
             ['nome' => 'Shadow Ball', 'tipo' => 'ghost', 'origem' => 'TM30 (Pokémon Tower)'],
@@ -60,7 +60,7 @@ $timePokemon = [
     ],
     [
         'id' => 58,
-        'nome' => 'Growlithe',
+        'nome' => 'Arcanine',
         'types' => ['fire'],
         'movimentos' => [
             ['nome' => 'Flamethrower', 'tipo' => 'fire', 'origem' => 'Lv. 49 (Growlithe)'],
@@ -77,7 +77,7 @@ $timePokemon = [
     ],
     [
         'id' => 84,
-        'nome' => 'Doduo',
+        'nome' => 'Dodrio',
         'types' => ['normal', 'flying'],
         'movimentos' => [
             ['nome' => 'Drill Peck', 'tipo' => 'flying', 'origem' => 'Lv. 47 (Dodrio)'],
@@ -94,7 +94,7 @@ $timePokemon = [
     ],
     [
         'id' => 133,
-        'nome' => 'Eevee',
+        'nome' => 'Jolteon',
         'types' => ['normal'],
         'movimentos' => [
             ['nome' => 'Thunderbolt', 'tipo' => 'electric', 'origem' => 'TM24 (Game Corner)'],
@@ -111,8 +111,6 @@ $timePokemon = [
     ],
 ];
 
-
-
 ?>
 
 <section class="container py-4">
@@ -121,12 +119,14 @@ $timePokemon = [
     <main class="row gy-4 py-5">
         <?php foreach ($timePokemon as $pokemon) { ?>
             <div class="col-12 col-md-6">
-                <?= render('pokemon-time', $pokemon) ?>
+                <?= render('meu-time-pokemon', $pokemon) ?>
             </div>
         <?php } ?>
     </main>
 
-    <iframe src="./img/pdf/detonado.pdf" width="100%" height="1000px">
+    <?= render('detonado') ?>
+
+    <!-- <iframe src="./img/pdf/detonado.pdf" width="100%" height="1000px">
         Este navegador não suporta visualização de PDF.
-    </iframe>
+    </iframe> -->
 </section>
