@@ -1,124 +1,122 @@
 <?php
-$tittle = 'Detonado Pokemon Black V2';
+$tittle = 'Detonado Pokemon Fire Red';
 
 include_once __DIR__ . '/template/header.php';
 
 $timePokemon = [
     [
-        'id' => 503,
-        'nome' => 'Samurott',
+        'id' => 7,
+        'nome' => 'Squirtle',
         'types' => ['water'],
         'movimentos' => [
-            ['nome' => 'Surfar', 'tipo' => 'water', 'origem' => 'TM55'],
-            ['nome' => 'Raio de Gelo', 'tipo' => 'ice', 'origem' => 'TM13'],
-            ['nome' => 'Megachifre', 'tipo' => 'bug', 'origem' => 'Lv. 62'],
-            ['nome' => 'Jato d’Água', 'tipo' => 'water', 'origem' => 'Lv. 19']
+            ['nome' => 'Surf', 'tipo' => 'water', 'origem' => 'HM03 (Safari Zone)'],
+            ['nome' => 'Ice Beam', 'tipo' => 'ice', 'origem' => 'TM13 (Game Corner)'],
+            ['nome' => 'Bite', 'tipo' => 'dark', 'origem' => 'Lv. 24'],
+            ['nome' => 'Protect', 'tipo' => 'normal', 'origem' => 'TM17 (Celadon Store)']
         ],
-        'papel' => 'Versátil ofensivamente, cobrindo vários tipos ao longo do jogo.',
-        'onde_encontrar' => 'inicial do jogo.',
+        'papel' => 'Tanque versátil com cobertura especial contra vários tipos.',
+        'onde_encontrar' => 'Inicial do jogo (Pallet Town)',
         'evolucoes_anteriores' => [
-            ['id' => 501, 'nome' => 'Oshawott'],
-            ['id' => 502, 'nome' => 'Dewott', 'nivel' => 'lv. 17'],
-            ['id' => 503, 'nome' => 'Samurott', 'nivel' => 'lv. 36']
+            ['id' => 7, 'nome' => 'Squirtle'],
+            ['id' => 8, 'nome' => 'Wartortle', 'nivel' => 'lv. 16'],
+            ['id' => 9, 'nome' => 'Blastoise', 'nivel' => 'lv. 36']
         ]
     ],
     [
-        'id' => 462,
-        'nome' => 'Magnezone',
-        'types' => ['electric', 'steel'],
-        'habilidades' => ['Canhão de Luz', 'Disparo', 'Redemoinho', 'Explosão'],
+        'id' => 63,
+        'nome' => 'Abra',
+        'types' => ['psychic'],
         'movimentos' => [
-            ['nome' => 'Canhão de Luz', 'tipo' => 'steel', 'origem' => 'Lv. 54'], // Flash Cannon
-            ['nome' => 'Disparo', 'tipo' => 'electric', 'origem' => 'Lv. 43'], // Discharge
-            ['nome' => 'Redemoinho', 'tipo' => 'electric', 'origem' => 'TM73'], // Thunder Wave
-            ['nome' => 'Explosão', 'tipo' => 'normal', 'origem' => 'TM64']
+            ['nome' => 'Psychic', 'tipo' => 'psychic', 'origem' => 'Lv. 38 (como Alakazam)'],
+            ['nome' => 'Calm Mind', 'tipo' => 'psychic', 'origem' => 'TM04 (Celadon Store)'],
+            ['nome' => 'ThunderPunch', 'tipo' => 'electric', 'origem' => 'Move Tutor (Two Island)'],
+            ['nome' => 'Reflect', 'tipo' => 'psychic', 'origem' => 'TM33 (Power Plant)']
         ],
-        'papel' => 'Resistência e poder especial; ótimo contra tipos Inseto, Veneno, Voador e Água.',
-        'onde_encontrar' => 'Evolui de Magneton ao subir nível na Chargestone Cave.',
+        'papel' => 'Especialista em ataque especial, com muita velocidade.',
+        'onde_encontrar' => 'Rota 24 e 25 (próximo a Cerulean City)',
         'evolucoes_anteriores' => [
-            ['id' => 81, 'nome' => 'Magnemite'],
-            ['id' => 82, 'nome' => 'Magneton', 'nivel' => 'lv. 30'],
-            ['id' => 462, 'nome' => 'Magnezone', 'nivel' => 'Charg. Cave']
+            ['id' => 63, 'nome' => 'Abra'],
+            ['id' => 64, 'nome' => 'Kadabra', 'nivel' => 'lv. 16'],
+            ['id' => 65, 'nome' => 'Alakazam', 'nivel' => 'troca']
         ]
     ],
     [
-        'id' => 59,
-        'nome' => 'Arcanine',
+        'id' => 94,
+        'nome' => 'Gastly',
+        'types' => ['ghost', 'poison'],
+        'movimentos' => [
+            ['nome' => 'Shadow Ball', 'tipo' => 'ghost', 'origem' => 'TM30 (Pokémon Tower)'],
+            ['nome' => 'Thunderbolt', 'tipo' => 'electric', 'origem' => 'TM24 (Game Corner)'],
+            ['nome' => 'Hypnosis', 'tipo' => 'psychic', 'origem' => 'Lv. 8 (Gastly)'],
+            ['nome' => 'Dream Eater', 'tipo' => 'psychic', 'origem' => 'Lv. 39 (Haunter)']
+        ],
+        'papel' => 'Status, velocidade e ataque especial devastador.',
+        'onde_encontrar' => 'Pokémon Tower (Lavender Town, após o evento do Poké Flute)',
+        'evolucoes_anteriores' => [
+            ['id' => 92, 'nome' => 'Gastly'],
+            ['id' => 93, 'nome' => 'Haunter', 'nivel' => 'lv. 25'],
+            ['id' => 94, 'nome' => 'Gengar', 'nivel' => 'troca']
+        ]
+    ],
+    [
+        'id' => 58,
+        'nome' => 'Growlithe',
         'types' => ['fire'],
-        'habilidades' => ['Lança Chamas', 'Presas Trovão', 'Velocidade Extrema', 'Roda de Fogo'],
         'movimentos' => [
-            ['nome' => 'Lança Chamas', 'tipo' => 'fire', 'origem' => 'TM35'],
-            ['nome' => 'Presas Trovão', 'tipo' => 'electric', 'origem' => 'Lv. 34'],
-            ['nome' => 'Velocidade Extrema', 'tipo' => 'normal', 'origem' => 'Lv. 39'],
-            ['nome' => 'Roda de Fogo', 'tipo' => 'fire', 'origem' => 'Lv. 23']
+            ['nome' => 'Flamethrower', 'tipo' => 'fire', 'origem' => 'Lv. 49 (Growlithe)'],
+            ['nome' => 'Toxic', 'tipo' => 'poison', 'origem' => 'TM06 (Celadon Store)'],
+            ['nome' => 'Iron Tail', 'tipo' => 'steel', 'origem' => 'TM23 (Silph Co.)'],
+            ['nome' => 'Roar', 'tipo' => 'normal', 'origem' => 'TM05 (Route 4 / Celadon Store)']
         ],
-        'papel' => 'Atacante ágil e poderoso, com boas opções de cobertura.',
-        'onde_encontrar' => 'Use Fire Stone em Growlithe. Encontra Growlithe na Route 2.',
+        'papel' => 'Atacante físico rápido com cobertura contra diversos tipos.',
+        'onde_encontrar' => 'Rotas 7 e 8 (perto de Celadon City)',
         'evolucoes_anteriores' => [
             ['id' => 58, 'nome' => 'Growlithe'],
             ['id' => 59, 'nome' => 'Arcanine', 'nivel' => 'Fire Stone']
         ]
     ],
     [
-        'id' => 560,
-        'nome' => 'Scrafty',
-        'types' => ['dark', 'fighting'],
-        'habilidades' => ['Chute Altíssimo', 'Mastigada', 'Soco Gélido', 'Força'],
+        'id' => 84,
+        'nome' => 'Doduo',
+        'types' => ['normal', 'flying'],
         'movimentos' => [
-            ['nome' => 'Chute Altíssimo', 'tipo' => 'fighting', 'origem' => 'Lv. 51'],
-            ['nome' => 'Mastigada', 'tipo' => 'dark', 'origem' => 'Lv. 38'],
-            ['nome' => 'Soco Gélido', 'tipo' => 'ice', 'origem' => 'Move Tutor'],
-            ['nome' => 'Força', 'tipo' => 'normal', 'origem' => 'HM04']
+            ['nome' => 'Drill Peck', 'tipo' => 'flying', 'origem' => 'Lv. 47 (Dodrio)'],
+            ['nome' => 'Return', 'tipo' => 'normal', 'origem' => 'TM27 (alta felicidade)'],
+            ['nome' => 'Steel Wing', 'tipo' => 'steel', 'origem' => 'TM47 (Victory Road)'],
+            ['nome' => 'Fly', 'tipo' => 'flying', 'origem' => 'HM02 (Route 16)']
         ],
-        'papel' => 'Cobertura contra tipo Dragão e resistência ao tipo Psíquico.',
-        'onde_encontrar' => 'Evolui de Scraggy no Lv. 39. Encontra Scraggy na Route 4.',
+        'papel' => 'Responsável por transporte (Fly) e ataques físicos rápidos.',
+        'onde_encontrar' => 'Safari Zone ou Route 16',
         'evolucoes_anteriores' => [
-            ['id' => 559, 'nome' => 'Scraggy'],
-            ['id' => 560, 'nome' => 'Scrafty', 'nivel' => 'lv. 39']
+            ['id' => 84, 'nome' => 'Doduo'],
+            ['id' => 85, 'nome' => 'Dodrio', 'nivel' => 'lv. 31']
         ]
     ],
     [
-        'id' => 330,
-        'nome' => 'Flygon',
-        'types' => ['dragon', 'ground'],
-        'habilidades' => ['Poder da Terra', 'Garra de Dragão', 'Lança-Rochas', 'Mastigada'],
+        'id' => 133,
+        'nome' => 'Eevee',
+        'types' => ['normal'],
         'movimentos' => [
-            ['nome' => 'Poder da Terra', 'tipo' => 'ground', 'origem' => 'Move Tutor'],
-            ['nome' => 'Garra de Dragão', 'tipo' => 'dragon', 'origem' => 'TM02'],
-            ['nome' => 'Lança-Rochas', 'tipo' => 'rock', 'origem' => 'TM80'],
-            ['nome' => 'Mastigada', 'tipo' => 'dark', 'origem' => 'Lv. 35']
+            ['nome' => 'Thunderbolt', 'tipo' => 'electric', 'origem' => 'TM24 (Game Corner)'],
+            ['nome' => 'Shadow Ball', 'tipo' => 'ghost', 'origem' => 'TM30 (Pokémon Tower)'],
+            ['nome' => 'Substitute', 'tipo' => 'normal', 'origem' => 'TM90 (Safari Zone)'],
+            ['nome' => 'Double Kick', 'tipo' => 'fighting', 'origem' => 'Lv. 16']
         ],
-        'papel' => 'Velocidade e cobertura ampla; útil contra Dragão e elétricos.',
-        'onde_encontrar' => 'Evolui de Vibrava no Lv. 45. Trapinch está disponível no Desert Resort.',
+        'papel' => 'Velocidade e ataque especial elétrico para cobertura de fraquezas.',
+        'onde_encontrar' => 'Celadon Mansion (é dado como presente pelo cientista)',
         'evolucoes_anteriores' => [
-            ['id' => 328, 'nome' => 'Trapinch'],
-            ['id' => 329, 'nome' => 'Vibrava', 'nivel' => 'lv. 35'],
-            ['id' => 330, 'nome' => 'Flygon', 'nivel' => 'lv. 45']
-        ]
-    ],
-    [
-        'id' => 561,
-        'nome' => 'Sigilyph',
-        'types' => ['psychic', 'flying'],
-        'habilidades' => ['Voar', 'Poder Aéreo', 'Psíquico', 'Bola Sombria'],
-        'movimentos' => [
-            ['nome' => 'Voar', 'tipo' => 'flying', 'origem' => 'HM02'],
-            ['nome' => 'Poder Aéreo', 'tipo' => 'flying', 'origem' => 'Lv. 38'],
-            ['nome' => 'Psíquico', 'tipo' => 'psychic', 'origem' => 'TM29'],
-            ['nome' => 'Bola Sombria', 'tipo' => 'ghost', 'origem' => 'TM30']
-        ],
-        'papel' => 'Resistência ao tipo Lutador e transporte aéreo.',
-        'onde_encontrar' => 'Encontrado na Route 7.',
-        'evolucoes_anteriores' => [
-            ['id' => 561, 'nome' => 'Sigilyph'] // não evolui
+            ['id' => 133, 'nome' => 'Eevee'],
+            ['id' => 135, 'nome' => 'Jolteon', 'nivel' => 'Thunder Stone']
         ]
     ],
 ];
 
+
+
 ?>
 
 <section class="container py-4">
-    <h1 class="text-center text-danger mb-4">Pokemon Black Version 2</h1>
+    <h1 class="text-center text-danger mb-4">Pokemon Fire Red</h1>
 
     <main class="row gy-4 py-5">
         <?php foreach ($timePokemon as $pokemon) { ?>
@@ -127,7 +125,7 @@ $timePokemon = [
             </div>
         <?php } ?>
     </main>
-    
+
     <iframe src="./img/pdf/detonado.pdf" width="100%" height="1000px">
         Este navegador não suporta visualização de PDF.
     </iframe>
