@@ -1,7 +1,7 @@
 {
   "name": "Detonado Pokémon",
   "short_name": "Detonado",
-  "start_url": ".",
+  "start_url": "./detonado",
   "display": "standalone",
   "background_color": "#F2DCB3",
   "theme_color": "#345952",
