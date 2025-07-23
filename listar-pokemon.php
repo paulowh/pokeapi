@@ -16,16 +16,16 @@ include_once __DIR__ . '/template/header.php';
         <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(7)">Geração 7</button>
         <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(8)">Geração 8</button>
         <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(9)">Geração 9</button>
-        <button class="btn btn-outline-primary" type="button" onclick="loadPokemonBlack2()">Black V2</button>
     </div>
 
     <main class="row gy-4 position-relative" id="pokedex">
-        <div id="preloader" class="preloader-overlay">
-            <div class="spinner-border text-danger" role="status">
-                <span class="visually-hidden">Carregando...</span>
-            </div>
-        </div>
+        <!-- ...existing code... -->
     </main>
+    <div id="loading-indicator" class="text-center mt-4 d-none">
+        <div class="spinner-border text-danger" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
 </section>
 
 </body>
