@@ -1,81 +1,104 @@
-# Projeto Pokémon API
+# Pokédex Web App
 
-## 📖 Sobre
-Uma aplicação web que permite aos usuários pesquisar e interagir com dados de Pokémon usando a PokéAPI. O projeto inclui funcionalidades como busca de Pokémon por nome ou número, visualização de informações detalhadas e um mini-game "Quem é esse Pokémon?".
+Uma aplicação web moderna para explorar e gerenciar sua coleção de Pokémon, com suporte PWA e recursos avançados.
 
-## 🚀 Funcionalidades
-- Pesquisa de Pokémon por nome ou número
-- Visualização de informações detalhadas do Pokémon:
-  - Estatísticas
-  - Tipos
-  - Habilidades
-  - Altura e peso
-- Gerador de Pokémon aleatório
-- Mini-game "Quem é esse Pokémon?"
-- Sistema para salvar Pokémon favoritos
-- Suporte para variantes shiny
+## 📱 Recursos Principais
 
-## 🛠️ Tecnologias Utilizadas
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- Bootstrap
-- PokéAPI
+### Core Features
+- **Pokédex Completa**: Navegação por todas as gerações
+- **Sistema de Favoritos**: Gerencie sua coleção
+- **Busca Avançada**: Por nome ou número
+- **Interface Responsiva**: Desktop e Mobile
+- **Instalável**: Suporte a PWA
 
-## 🔧 Instalação
-1. Clone o repositório
-2. Coloque os arquivos no diretório do seu servidor web (ex: xampp/htdocs/pokeapi)
-3. Inicie seu servidor web
-4. Acesse através do navegador em `http://localhost/pokeapi`
+### Extras
+- **Mini Game**: "Quem é esse Pokémon?"
+- **Detonado**: Guia FireRed/LeafGreen
+- **Infinite Scroll**: Carregamento dinâmico
+- **Cache Inteligente**: Performance otimizada
 
-## 💻 Como Usar
+## ⚙️ Requisitos do Sistema
 
-### Pesquisar um Pokémon
-```javascript
-// Digite o nome ou número do Pokémon no campo de busca
-buscarPokemonCompleto('pikachu'); // ou buscarPokemonCompleto(25);
+### Obrigatório
+- PHP 8.0+
+- Composer
+- Git
+
+### Recomendado
+- VS Code + PHP Server
+- XAMPP/Apache
+- Navegador moderno
+
+## 🚀 Quick Start
+
+1. Clone o projeto:
+```bash
+git clone https://github.com/seu-usuario/pokeapi.git
+cd pokeapi
 ```
 
-### Pokémon Aleatório
-```javascript
-// Clique no botão aleatório ou chame
-buscarPokemonAleatorio();
+2. Instale dependências:
+```bash
+composer install
 ```
 
-### Jogar "Quem é esse Pokémon?"
-```javascript
-// Iniciar o jogo
-carregarPokemonOculto();
-// Enviar sua resposta
-verificarResposta();
+3. Acesse:
+```
+http://localhost/pokeapi
 ```
 
-## 🎮 Funções Principais
+## 💻 Stack Tecnológica
 
-### `buscarPokemonCompleto(valor)`
-- Busca informações completas de um Pokémon
-- Parâmetros: nome ou número do Pokémon
+### Frontend
+- HTML5/CSS3
+- JavaScript ES6+
+- Bootstrap 5
+- PWA
 
-### `buscarPokemonAleatorio()`
-- Seleciona e exibe um Pokémon aleatório
+### Backend
+- PHP 8.0+
+- Twig Template Engine
+- PokeAPI
+- SessionStorage
 
-### `salvarPokemon(id)`
-- Salva um Pokémon na lista de favoritos
-- Utiliza sessionStorage para persistência
+## 📋 Roadmap
 
-### `carregarPokemonOculto()`
-- Inicia o mini-game com um Pokémon aleatório oculto
+### v1.1 - Autenticação
+- [ ] Login de usuários
+- [ ] Perfis personalizados
+- [ ] Preferências salvas
 
-## 🌐 Referência da API
-Este projeto utiliza a [PokéAPI](https://pokeapi.co/) para obter dados dos Pokémon.
+### v1.2 - Social
+- [ ] Compartilhamento de coleção
+- [ ] Exportação de dados
+- [ ] Integração com redes sociais
 
-## 📝 Observações
-- Total de Pokémon disponíveis: 1025
-- Suporte a todas as gerações
-- Alguns Pokémon possuem variantes shiny (IDs 7, 8, 9)
+### v1.3 - Game Data
+- [ ] Localização nos jogos
+- [ ] Guia de evolução
+- [ ] Sistema de moves
+- [ ] Compatibilidade TM/HM
 
-## 🤝 Contribuição
-Sinta-se à vontade para enviar issues e sugestões de melhorias.
+### v1.4 - Dados Completos
+- [ ] Status detalhados
+- [ ] Sistema de breeding
+- [ ] Árvore evolutiva
+- [ ] Matriz de tipos
+- [ ] Moves por level
 
-## 📜 Licença
-Este projeto é open source e está disponível sob a [Licença MIT](LICENSE).
+### v1.5+
+- [ ] Estatísticas de coleção
+- [ ] Novos mini-games
+- [ ] Modo offline completo
+
+## 🤝 Como Contribuir
+
+1. Fork o projeto
+2. Crie sua branch (`git checkout -b feature/NomeRecurso`)
+3. Commit (`git commit -m 'Adiciona novo recurso'`)
+4. Push (`git push origin feature/NomeRecurso`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+MIT License - Veja [LICENSE.md](LICENSE.md)

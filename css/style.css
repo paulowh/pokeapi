@@ -1,7 +1,6 @@
 #pokedex {
     position: relative;
     min-height: 200px;
-    /* Evita quebra de layout antes do load */
 }
 
 #preloader.preloader-overlay {
@@ -25,12 +24,6 @@
     opacity: 0;
     pointer-events: none;
 }
-
-
-/* Oculta conteúdo até estar pronto */
-/* body:not(.loaded) main {
-    visibility: hidden;
-} */
 
 .pokemon-card {
     transition: transform 0.2s ease-in-out;
@@ -438,43 +431,6 @@ img.type-icon:hover {
     }
 }
 
-.btn-remover-pokemon {
-    background-color: #dc3545;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-remover-pokemon:hover {
-    background-color: #bb2d3b;
-    color: white;
-}
-
-/* Para manter a consistência no card da Pokédex */
-.pokedex .btn-remover-pokemon {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.pokedex .btn-remover-pokemon:hover {
-    background-color: #bb2d3b;
-}
-
-/* Header customizations */
-.nav-link:hover {
-    color: #dc3545 !important;
-}
-
 .dropdown-item:hover {
     background-color: #f8f9fa;
 }
@@ -524,6 +480,7 @@ article {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
     -webkit-appearance: none; /* Fix para iOS */
+    appearance: none; /* Fix para iOS */
     -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
     touch-action: manipulation; /* Melhora resposta do toque */
 }
