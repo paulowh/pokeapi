@@ -27,67 +27,88 @@ require_once __DIR__ . '/../function.php';
 
     <link rel="stylesheet" href="./css/style.css">
 
-    <script src="./js/jquery-3.7.1.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
+    <!-- Altere a ordem dos scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/pokedex.js"></script>
 </head>
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
     <!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
 
-    <header class="navbar navbar-light bg-white border-bottom shadow-sm">
-        <nav class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="./">
-                <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2" />
-                PokéApp
-            </a>
-            <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu"
-                aria-controls="offcanvasMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 mb-0">
-                <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./search-pokemon">Procurar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./mini-game">Mini Game</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./detonado">Detonado</a>
-                </li>
+    <header class="py-3 mb-3 border-bottom bg-white shadow-sm">
+        <!-- Header para Desktop -->
+        <div class="container d-none d-md-block">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="./" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none me-lg-4">
+                    <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
+                </a>
 
-            </ul>
-            <div class="d-none d-lg-block">
-                <a href="./meus-pokemon" class="btn btn-dark">Meus Pokémon</a>
-            </div>
-        </nav>
-
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasMenuLabel">PokéApp</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav gap-2">
-                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./search-pokemon">Procurar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./meus-pokemon">Listar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./meus-pokemon">Meus Pokémon</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./detonado">Detonado</a>
-                    </li>
-                    <li class="nav-item mt-3">
-                        <a href="./mini-game" class="btn btn-dark w-100">Mini Game</a>
-                    </li>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="./" class="nav-link px-2 link-dark fw-semibold">Pokédex</a></li>
+                    <li><a href="./search-pokemon" class="nav-link px-2 link-dark fw-semibold">Procurar</a></li>
+                    <li><a href="./mini-game" class="nav-link px-2 link-dark fw-semibold">Mini Game</a></li>
+                    <li><a href="./detonado" class="nav-link px-2 link-dark fw-semibold">Detonado</a></li>
                 </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="./img/pokeball.png" alt="Menu" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+                        <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
+                        <li><a class="dropdown-item" href="./search-pokemon">Pesquisar</a></li>
+                        <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header para Mobile -->
+        <div class="container-fluid d-md-none">
+            <div class="d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
+                    </a>
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="./">Pokédex</a></li>
+                        <li><a class="dropdown-item" href="./search-pokemon">Procurar</a></li>
+                        <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
+                        <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
+                    </ul>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <form class="w-100 me-3" role="search">
+                        <input type="search" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search">
+                    </form>
+
+                    <div class="flex-shrink-0 dropdown">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./img/pokeball.png" alt="Menu" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+                            <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
+                            <li><a class="dropdown-item" href="./search-pokemon">Pesquisar</a></li>
+                            <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Alert Container -->
     <div id="alert-container"></div>
