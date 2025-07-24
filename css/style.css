@@ -418,7 +418,8 @@ img.type-icon:hover {
 
 .card-footer .invisible {
     grid-column: 1;
-    width: 70px; /* Mesmo tamanho do botão */
+    width: 70px;
+    /* Mesmo tamanho do botão */
 }
 
 /* Ajuste para responsividade */
@@ -463,4 +464,79 @@ img.type-icon:hover {
 
 .pokedex .btn-remover-pokemon:hover {
     background-color: #bb2d3b;
+}
+
+/* Header customizations */
+.nav-link:hover {
+    color: #dc3545 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Header Styles */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.container-fluid {
+    max-width: 1320px;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #dc3545 !important;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}
+
+.dropdown-item {
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-toggle:after {
+    margin-left: 0.5em;
+}
+
+.form-control {
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-fluid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .dropdown-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        border-top: 1px solid rgba(0, 0, 0, .1);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
 }
