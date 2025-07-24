@@ -57,6 +57,29 @@ function salvarPokemon(id) {
     }
 }
 
+function removerPokemon(id) {
+    const lista = sessionStorage.getItem('pokemonsSalvos');
+
+    if (!lista) {
+        mostrarAlerta('Nenhum Pokémon salvo para remover.', 'warning');
+        return;
+    }
+
+    const pokemons = JSON.parse(lista);
+    const index = pokemons.indexOf(id);
+
+    if (index > -1) {
+        pokemons.splice(index, 1);
+        sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
+        mostrarAlerta(`Pokémon #${id} removido.`, 'success');
+
+        // Recarrega a lista de pokémons
+        carregarMeusPokemon();
+    } else {
+        mostrarAlerta(`Pokémon #${id} não está na lista.`, 'warning');
+    }
+}
+
 function limparPokemon() {
     sessionStorage.removeItem('pokemonsSalvos');
     // location.reload();
@@ -181,7 +204,8 @@ async function carregarMeusPokemon() {
                         nome: pokemon.name,
                         img: imgArtwork(pokemon.id),
                         types: types,
-                        habilidades: habilidades
+                        habilidades: habilidades,
+                        meusPokemon: true
                     }
                 })
             });
