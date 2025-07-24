@@ -48,7 +48,7 @@ require_once __DIR__ . '/../function.php';
             <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 mb-0">
                 <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="./listar-pokemon">Listar</a>
+                    <a class="nav-link text-dark fw-semibold" href="./search-pokemon">Procurar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark fw-semibold" href="./mini-game">Mini Game</a>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/../function.php';
                 <ul class="navbar-nav gap-2">
                     <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="./">Pokédex</a></li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold" href="./listar-pokemon">Listar</a>
+                        <a class="nav-link text-dark fw-semibold" href="./search-pokemon">Procurar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark fw-semibold" href="./meus-pokemon">Listar</a>

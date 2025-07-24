@@ -144,6 +144,19 @@
     background-color: #2a3791;
 }
 
+.btn-salvar-pokemon {
+    background-color: #345952;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-salvar-pokemon:hover {
+    background-color: #203632;
+    color: white;
+
+}
+
 img.type-icon {
     border-radius: 100%;
     height: 20px;
@@ -231,6 +244,18 @@ img.type-icon:hover {
     transform: translateX(-50%);
     z-index: 1050;
     max-width: 90vw;
+}
+
+#loading-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo base para todos os tamanhos */
@@ -362,4 +387,80 @@ img.type-icon:hover {
     line-height: 1;
     transform: rotate(300deg);
     /* ajusta o estilo da seta */
+}
+
+.card-footer {
+    padding: 0.75rem;
+    min-height: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-footer small {
+    text-align: center;
+    white-space: nowrap;
+    grid-column: 2;
+}
+
+.card-footer .btn-salvar-pokemon {
+    grid-column: 3;
+    justify-self: end;
+    min-width: 70px;
+}
+
+.card-footer .btn-remover-pokemon {
+    grid-column: 1;
+    justify-self: start;
+    min-width: 70px;
+}
+
+.card-footer .invisible {
+    grid-column: 1;
+    width: 70px; /* Mesmo tamanho do botão */
+}
+
+/* Ajuste para responsividade */
+@media (max-width: 576px) {
+    .card-footer {
+        font-size: 0.875rem;
+    }
+
+    .card-footer .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+.btn-remover-pokemon {
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remover-pokemon:hover {
+    background-color: #bb2d3b;
+    color: white;
+}
+
+/* Para manter a consistência no card da Pokédex */
+.pokedex .btn-remover-pokemon {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.pokedex .btn-remover-pokemon:hover {
+    background-color: #bb2d3b;
 }
