@@ -24,8 +24,8 @@ require_once __DIR__ . '/../function.php';
 
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- Altere a ordem dos scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -62,9 +62,12 @@ require_once __DIR__ . '/../function.php';
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                         <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
+                        <li><a class="dropdown-item" href="./">Pokédex</a></li>
                         <li><a class="dropdown-item" href="./search-pokemon">Pesquisar</a></li>
                         <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
                     </ul>
                 </div>
@@ -73,21 +76,7 @@ require_once __DIR__ . '/../function.php';
 
         <!-- Header para Mobile -->
         <div class="container-fluid d-md-none">
-            <div class="d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
-                    </a>
-                    <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="./">Pokédex</a></li>
-                        <li><a class="dropdown-item" href="./search-pokemon">Procurar</a></li>
-                        <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
-                        <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
-                    </ul>
-                </div>
-
+            <div class="d-grid gap-3 align-items-center">
                 <div class="d-flex align-items-center">
                     <form class="w-100 me-3" role="search">
                         <input type="search" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search">
@@ -99,9 +88,12 @@ require_once __DIR__ . '/../function.php';
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                             <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
+                            <li><a class="dropdown-item" href="./">Pokédex</a></li>
                             <li><a class="dropdown-item" href="./search-pokemon">Pesquisar</a></li>
                             <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="./detonado">Detonado</a></li>
                         </ul>
                     </div>

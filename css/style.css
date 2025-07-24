@@ -33,13 +33,14 @@
 } */
 
 .pokemon-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .pokemon-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pokemon-img {
@@ -390,6 +391,9 @@ img.type-icon:hover {
 }
 
 .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem !important;
     padding: 0.75rem;
     min-height: 48px;
     display: grid;
@@ -475,68 +479,81 @@ img.type-icon:hover {
     background-color: #f8f9fa;
 }
 
-/* Header Styles */
-header {
+
+header:not(.card-pokemon) {
     position: sticky;
     top: 0;
-    z-index: 1020;
+    z-index: 1030;
+    /* Aumentar o z-index para garantir que fique acima de todo conteúdo */
+    background-color: white;
+    /* Garante que o fundo seja sólido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adiciona uma sombra sutil */
 }
 
-.container-fluid {
-    max-width: 1320px;
+/* Ajuste para o conteúdo principal */
+main,
+article {
+    position: relative;
+    z-index: 1;
+    padding-top: 1rem;
+    /* Adiciona espaço entre o header e o conteúdo */
 }
 
-.nav-link {
-    transition: color 0.3s ease;
+/* Ajuste específico para o accordion */
+.accordion {
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+    /* Espaçamento adicional para o accordion */
 }
 
-.nav-link:hover {
-    color: #dc3545 !important;
+/* Botão do Card */
+.btn-card {
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
-.dropdown-menu {
-    min-width: 200px;
+.btn-card:hover {
+    transform: scale(1.1);
 }
 
-.dropdown-item {
-    transition: background-color 0.3s ease;
+.btn-salvar {
+    color: #6c757d;
 }
 
-.dropdown-item:hover {
-    background-color: #f8f9fa;
+.btn-salvar:hover {
+    color: #ffc107;
 }
 
-.dropdown-toggle:after {
-    margin-left: 0.5em;
+.btn-salvar.salvo {
+    color: #ffc107;
 }
 
-.form-control {
-    border-radius: 20px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    transition: all 0.3s ease;
+.btn-remover {
+    color: #6c757d;
 }
 
-.form-control:focus {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+.btn-remover:hover {
+    color: #dc3545;
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .container-fluid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
-
-    .dropdown-menu {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        border-radius: 0;
-        border-top: 1px solid rgba(0, 0, 0, .1);
-        max-height: calc(100vh - 60px);
-        overflow-y: auto;
+@media (max-width: 576px) {
+    .btn-card {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
     }
 }

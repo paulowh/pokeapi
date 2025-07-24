@@ -1,33 +1,31 @@
 <div class="col-6 col-md-4 col-lg-3">
-	<div class="card pokemon-card text-center shadow-sm h-100">
-		<img src="{{ img }}" class="card-img-top p-3" alt="{{ nome }}">
-		<div class="card-body">
-			<h5 class="card-title text-capitalize">{{ nome }}</h5>
-			<div class="d-flex justify-content-center flex-wrap mb-2">
-				{% for type in types %}
-					<div class="d-flex align-items-center mx-1">
-						<img src="{{ type.icon }}" alt="{{ type.nome }}" title="{{ type.nome }}" class="me-1 type-icon {{ type.nome }}">
-						<small class="text-capitalize">{{ type.nome }}</small>
-					</div>
-				{% endfor %}
-			</div>
-			{% if habilidades %}
-				<p class="card-text">
-					<strong>Habilidades:</strong>
-					{{ habilidades }}
-				</p>
-			{% endif %}
-		</div>
-		<div class="card-footer d-flex justify-content-between align-items-center">
-			{% if meusPokemon %}
-				<button class="btn btn-remover-pokemon btn-sm" onclick="removerPokemon({{ id }})">Remover</button>
-			{% else %}
-				<div class="invisible"><!-- Espaçador --></div>
-			{% endif %}
-			
-			<small class="text-muted mx-2">ID: #{{ id_unova is defined ? id_unova : id }}</small>
-			
-			<button class="btn btn-salvar-pokemon btn-sm" onclick="salvarPokemon({{ id }})">Salvar</button>
-		</div>
-	</div>
+    <div class="card pokemon-card text-center shadow-sm h-100" data-pokemon-id="{{ id }}">
+        <div class="position-relative">
+            <button class="btn-card btn-salvar position-absolute top-0 end-0 m-2 {{ meusPokemon ? 'salvo' : '' }}" 
+                    onclick="{{ meusPokemon ? 'removerPokemon' : 'salvarPokemon' }}({{ id }})">
+                <i class="bi {{ meusPokemon ? 'bi-bookmark-fill' : 'bi-bookmark' }}"></i>
+            </button>
+            <img src="{{ img }}" class="card-img-top p-3" alt="{{ nome }}">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-capitalize">{{ nome }}</h5>
+            <div class="d-flex justify-content-center flex-wrap mb-2">
+                {% for type in types %}
+                    <div class="d-flex align-items-center mx-1">
+                        <img src="{{ type.icon }}" alt="{{ type.nome }}" title="{{ type.nome }}" class="me-1 type-icon {{ type.nome }}">
+                        <small class="text-capitalize">{{ type.nome }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if habilidades %}
+                <p class="card-text">
+                    <strong>Habilidades:</strong>
+                    {{ habilidades }}
+                </p>
+            {% endif %}
+        </div>
+        <div class="card-footer d-flex justify-content-center align-items-center p-2">
+            <small class="pokemon-id">ID: #{{ id_unova is defined ? id_unova : id }}</small>
+        </div>
+    </div>
 </div>

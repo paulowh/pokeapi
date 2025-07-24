@@ -55,6 +55,10 @@ function salvarPokemon(id) {
     } else {
         mostrarAlerta(`Pokémon #${id} já está salvo.`, 'info');
     }
+
+    // Após salvar com sucesso
+    const btnSalvar = event.currentTarget;
+    btnSalvar.classList.add('salvo');
 }
 
 function removerPokemon(id) {
@@ -75,6 +79,12 @@ function removerPokemon(id) {
 
         // Recarrega a lista de pokémons
         carregarMeusPokemon();
+
+        // Após remover com sucesso
+        const cardElement = event.currentTarget.closest('.pokemon-card');
+        if (cardElement) {
+            cardElement.remove();
+        }
     } else {
         mostrarAlerta(`Pokémon #${id} não está na lista.`, 'warning');
     }
@@ -247,6 +257,10 @@ async function loadPokemon(gen = null) {
 
     const pokedex = document.getElementById('pokedex');
     const endIndex = Math.min(currentIndex + POKEMON_PER_PAGE, GERACOES[currentGen].fim);
+    
+    // Obtém lista de pokémons salvos
+    const salvos = sessionStorage.getItem('pokemonsSalvos');
+    const pokemonsSalvos = salvos ? JSON.parse(salvos) : [];
 
     try {
         for (let i = currentIndex; i <= endIndex; i++) {
@@ -267,7 +281,8 @@ async function loadPokemon(gen = null) {
                         id: pokemon.id,
                         nome: pokemon.name,
                         types: types,
-                        img: imgArtwork(pokemon.id)
+                        img: imgArtwork(pokemon.id),
+                        meusPokemon: pokemonsSalvos.includes(pokemon.id) // Verifica se está salvo
                     }
                 })
             });
