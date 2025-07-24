@@ -1,3 +1,4 @@
+/* ===== Layout Principal ===== */
 #pokedex {
     position: relative;
     min-height: 200px;
@@ -25,6 +26,7 @@
     pointer-events: none;
 }
 
+/* ===== Estilos dos Cards de Pokémon ===== */
 .pokemon-card {
     transition: transform 0.2s ease-in-out;
     border-radius: 10px;
@@ -47,6 +49,17 @@
     text-transform: capitalize;
 }
 
+/* ===== Botão Salvar Pokémon ===== */
+.btn-salvar {
+    z-index: 10;
+}
+
+.btn-salvar.salvo {
+    background-color: #21ba45 !important;
+    color: white !important;
+}
+
+/* ===== Estilos do Card Pokémon (Pokédex) ===== */
 .pokedex .pokemon-card {
     max-width: 380px;
     margin: auto;
@@ -445,6 +458,8 @@ header#header {
     /* Garante que o fundo seja sólido */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Adiciona uma sombra sutil */
+    overflow: visible;
+    /* Permite que o dropdown apareça fora do header */
 }
 
 /* Ajuste para o conteúdo principal */
@@ -541,5 +556,161 @@ article {
     .pokemon-card {
         -webkit-transform: translateZ(0); /* Melhora renderização no Safari */
         transform: translateZ(0);
+    }
+}
+
+/* ==== Estilos para Autocompletar ==== */
+.autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Garante que o form não cresça com o dropdown */
+form[role="search"] {
+    overflow: visible;
+}
+
+/* Garante que containers pai não sejam afetados */
+.container, .container-fluid {
+    overflow: visible !important;
+}
+
+header#header .d-flex, 
+header#header .row,
+header#header .col-md-6,
+header#header .col-12 {
+    overflow: visible !important;
+}
+
+/* Garante que o contexto de empilhamento na página de busca não interfira */
+main, section, article, .pokedex {
+    position: relative;
+    z-index: auto !important;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1060; /* Acima do header que tem z-index 1030 */
+    display: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 250px;
+    font-size: 0.875rem;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 2px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.autocomplete-suggestion {
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.15s ease;
+    min-height: 32px;
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+}
+
+.autocomplete-suggestion:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-suggestion:first-child {
+    border-radius: 0;
+}
+
+.autocomplete-suggestion:hover {
+    background-color: #e9ecef;
+    color: #1e2125;
+}
+
+.autocomplete-suggestion.selected {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.autocomplete-suggestion-name {
+    font-weight: normal;
+    text-transform: capitalize;
+    flex-grow: 1;
+    font-size: 0.875rem;
+}
+
+.autocomplete-suggestion-id {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 600;
+    background: #f8f9fa;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.75rem;
+    min-width: 45px;
+    text-align: center;
+    margin-left: 0.5rem;
+}
+
+.autocomplete-suggestion.selected .autocomplete-suggestion-id {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.autocomplete-loading {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.875rem;
+}
+
+/* Responsivo para mobile */
+@media (max-width: 768px) {
+    .autocomplete-suggestions {
+        max-height: 200px;
+        box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 5px -1px rgba(0, 0, 0, 0.05);
+    }
+    
+    .autocomplete-suggestion {
+        padding: 8px 12px;
+        min-height: 36px;
+    }
+    
+    .autocomplete-suggestion-name {
+        font-size: 13px;
+    }
+    
+    .autocomplete-suggestion-id {
+        font-size: 11px;
+        padding: 1px 6px;
+        min-width: 40px;
     }
 }

@@ -25,6 +25,7 @@ require_once __DIR__ . '/../function.php';
     <meta name="theme-color" content="#345952">
 
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -54,8 +55,11 @@ require_once __DIR__ . '/../function.php';
                     <li><a href="./detonado" class="nav-link px-2 link-dark fw-semibold">Detonado</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" onsubmit="pesquisarHeader(event)">
+                    <div class="autocomplete-container">
+                        <input type="search" id="pesquisa-desktop" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search" autocomplete="off" oninput="buscarSugestoes(this)" onkeydown="navegarSugestoes(event)" onblur="ocultarSugestoes()">
+                        <div id="sugestoes-desktop" class="autocomplete-suggestions"></div>
+                    </div>
                 </form>
 
                 <div class="dropdown text-end">
@@ -80,8 +84,11 @@ require_once __DIR__ . '/../function.php';
         <div class="container-fluid d-md-none">
             <div class="d-grid gap-3 align-items-center">
                 <div class="d-flex align-items-center">
-                    <form class="w-100 me-3" role="search">
-                        <input type="search" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search">
+                    <form class="w-100 me-3" role="search" onsubmit="pesquisarHeader(event)">
+                        <div class="autocomplete-container">
+                            <input type="search" id="pesquisa-mobile" class="form-control" placeholder="Buscar Pokémon..." aria-label="Search" autocomplete="off" oninput="buscarSugestoes(this)" onkeydown="navegarSugestoes(event)" onblur="ocultarSugestoes()">
+                            <div id="sugestoes-mobile" class="autocomplete-suggestions"></div>
+                        </div>
                     </form>
 
                     <div class="flex-shrink-0 dropdown">
