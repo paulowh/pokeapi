@@ -1,6 +1,6 @@
 <?php
 $tittle = 'Consulta de Pokemon';
-$onLoad = 'loadPokemon()';
+$onLoad = 'loadPokemon(1)';
 
 include_once __DIR__ . '/template/header.php';
 ?>
@@ -28,6 +28,10 @@ include_once __DIR__ . '/template/header.php';
     </div>
 </section>
 
+<script>
+    // Adicionar o event listener para o scroll
+    document.addEventListener('scroll', scrollHandler);
+</script>
 </body>
 
 </html>

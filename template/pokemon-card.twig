@@ -18,8 +18,9 @@
 				</p>
 			{% endif %}
 		</div>
-		<div class="card-footer">
-			<small class="text-muted">ID: #{{ id_unova is defined ? id_unova : id }}</small>
+		<div class="card-footer position-relative d-flex justify-content-end align-items-center">
+			<small class="text-muted position-absolute start-50 translate-middle-x">ID: #{{ id_unova is defined ? id_unova : id }}</small>
+			<button class="btn btn-salvar-pokemon btn-sm" onclick="salvarPokemon({{ id }})">Salvar</button>
 		</div>
 	</div>
 </div>

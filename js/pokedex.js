@@ -59,7 +59,7 @@ function salvarPokemon(id) {
 
 function limparPokemon() {
     sessionStorage.removeItem('pokemonsSalvos');
-    location.reload();
+    // location.reload();
 }
 
 function buscarPokemonCompleto(valor = null) {
@@ -149,15 +149,15 @@ function verificarResposta() {
 }
 
 async function carregarMeusPokemon() {
-    const container = $('#lista-pokemons');
+    const container = document.getElementById('lista-pokemons');
     const salvos = sessionStorage.getItem('pokemonsSalvos');
 
     if (!salvos || JSON.parse(salvos).length === 0) {
-        container.html('<div class="alert alert-info text-center">Nenhum Pokémon salvo ainda.</div>');
+        container.innerHTML = '<div class="alert alert-info text-center">Nenhum Pokémon salvo ainda.</div>';
         return;
     }
 
-    container.empty();
+    container.innerHTML = ''; // Limpa o container
     const ids = JSON.parse(salvos);
 
     for (const id of ids) {
@@ -169,12 +169,12 @@ async function carregarMeusPokemon() {
             }));
             const habilidades = pokemon.abilities.map(a => a.ability.name).join(', ');
 
-            $.ajax({
-                url: './render',
+            const response = await fetch('./render', {
                 method: 'POST',
-                dataType: 'html',
-                contentType: 'application/json',
-                data: JSON.stringify({
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     template: 'pokemon-card',
                     data: {
                         id: pokemon.id,
@@ -183,17 +183,17 @@ async function carregarMeusPokemon() {
                         types: types,
                         habilidades: habilidades
                     }
-                }),
-                success: function (html) {
-                    container.append(html);
-                },
-                error: function () {
-                    console.error(`Erro ao renderizar Pokémon salvo ID ${id}`);
-                }
+                })
             });
+
+            const html = await response.text();
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            container.appendChild(div.firstChild);
 
         } catch (erro) {
             console.error(`Erro ao buscar Pokémon com ID ${id}:`, erro);
+            mostrarAlerta(`Erro ao carregar Pokémon #${id}`, 'danger');
         }
     }
 }
@@ -204,7 +204,8 @@ let currentGen = 1;
 let currentIndex = 0;
 const POKEMON_PER_PAGE = 20;
 
-async function loadPokemon(gen = 1) {
+async function loadPokemon(gen = null) {
+    // Se uma geração foi especificada, reinicia o estado
     if (gen !== null) {
         currentGen = gen;
         currentIndex = GERACOES[gen].inicio;
@@ -212,17 +213,19 @@ async function loadPokemon(gen = 1) {
         pokedex.innerHTML = '';
     }
 
+    // Evita múltiplas requisições simultâneas
     if (isLoading) return;
     isLoading = true;
 
-    const myLoadId = ++currentLoadId;
+    // Mostra indicador de carregamento
+    const loadingIndicator = document.getElementById('loading-indicator');
+    if (loadingIndicator) loadingIndicator.classList.remove('d-none');
+
     const pokedex = document.getElementById('pokedex');
     const endIndex = Math.min(currentIndex + POKEMON_PER_PAGE, GERACOES[currentGen].fim);
 
     try {
         for (let i = currentIndex; i <= endIndex; i++) {
-            if (myLoadId !== currentLoadId) return;
-
             const pokemon = await fetchPokemon(i);
             const types = pokemon.types.map(t => ({
                 nome: t.type.name,
@@ -245,39 +248,45 @@ async function loadPokemon(gen = 1) {
                 })
             });
 
-            if (myLoadId === currentLoadId) {
-                const html = await response.text();
-                const div = document.createElement('div');
-                div.innerHTML = html;
-                pokedex.appendChild(div.firstChild);
-            }
+            const html = await response.text();
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            pokedex.appendChild(div.firstChild);
         }
 
+        // Atualiza o índice atual
         currentIndex = endIndex + 1;
-        
+
         // Verifica se chegou ao fim da geração atual
         if (currentIndex > GERACOES[currentGen].fim) {
             document.removeEventListener('scroll', scrollHandler);
+            mostrarAlerta('Você chegou ao fim desta geração!', 'info');
         }
 
     } catch (error) {
         console.error(`Erro ao renderizar Pokémon:`, error);
+        mostrarAlerta('Erro ao carregar Pokémon', 'danger');
     } finally {
         isLoading = false;
+        if (loadingIndicator) loadingIndicator.classList.add('d-none');
     }
 }
 
-// Função para verificar o scroll
+// Função para verificar o scroll com debounce
+let scrollTimeout;
 function scrollHandler() {
-    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 500) {
-        loadPokemon();
-    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const docHeight = document.documentElement.scrollHeight;
+
+        // Carrega mais pokémon quando estiver próximo do fim da página
+        if (scrollPosition >= docHeight - 800) {
+            // Só carrega se não estiver no fim da geração
+            if (currentIndex <= GERACOES[currentGen].fim) {
+                loadPokemon();
+            }
+        }
+    }, 100);
 }
 
-// Adicionar o event listener para o scroll
-document.addEventListener('scroll', scrollHandler);
-
-// Modificar o HTML para adicionar um indicador de carregamento
-$(() => {
-    // Iniciar ao carregar
-});

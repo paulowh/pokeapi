@@ -144,6 +144,18 @@
     background-color: #2a3791;
 }
 
+.btn-salvar-pokemon {
+    background-color: #345952;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-salvar-pokemon:hover {
+    background-color: #203632;
+    color: white;
+
+}
 img.type-icon {
     border-radius: 100%;
     height: 20px;
@@ -231,6 +243,18 @@ img.type-icon:hover {
     transform: translateX(-50%);
     z-index: 1050;
     max-width: 90vw;
+}
+
+#loading-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* Estilo base para todos os tamanhos */
@@ -362,4 +386,35 @@ img.type-icon:hover {
     line-height: 1;
     transform: rotate(300deg);
     /* ajusta o estilo da seta */
+}
+
+.card-footer {
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    min-height: 48px; /* Altura mínima para garantir espaço suficiente */
+}
+
+.card-footer small {
+    flex: 1;
+    text-align: center;
+    line-height: 1;
+    z-index: 1;
+}
+
+.card-footer .btn-salvar-pokemon {
+    position: relative;
+    z-index: 2;
+    min-width: 70px;
+}
+
+/* Ajuste para responsividade */
+@media (max-width: 576px) {
+    .card-footer {
+        flex-wrap: nowrap;
+    }
+    
+    .card-footer .btn-salvar-pokemon {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
 }
