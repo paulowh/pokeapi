@@ -39,7 +39,7 @@ require_once __DIR__ . '/../function.php';
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
     <!-- <body class="bg-light" onload="carregarPokemonOculto()"> -->
 
-    <header class="py-3 mb-3 border-bottom bg-white shadow-sm">
+    <header id="header" class="py-3 mb-3 border-bottom bg-white shadow-sm">
         <!-- Header para Desktop -->
         <div class="container d-none d-md-block">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
