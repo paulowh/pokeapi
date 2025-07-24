@@ -508,7 +508,7 @@ article {
     /* Espaçamento adicional para o accordion */
 }
 
-/* Botão do Card */
+/* Botão do Card - Ajustes Gerais */
 .btn-card {
     border: none;
     border-radius: 50%;
@@ -523,17 +523,23 @@ article {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    -webkit-appearance: none; /* Fix para iOS */
+    -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
+    touch-action: manipulation; /* Melhora resposta do toque */
 }
 
 .btn-card i {
     transition: all 0.3s ease;
+    pointer-events: none; /* Evita problemas de evento de toque no iOS */
 }
 
 .btn-salvar {
     color: #6c757d;
+    cursor: pointer;
 }
 
-.btn-salvar:hover {
+.btn-salvar:hover,
+.btn-salvar:active { /* Adicionado estado active para toque */
     color: #ffc107;
     transform: scale(1.1);
 }
@@ -542,23 +548,41 @@ article {
     color: #ffc107;
 }
 
-.btn-salvar.salvo:hover {
+.btn-salvar.salvo:hover,
+.btn-salvar.salvo:active {
     color: #6c757d;
 }
 
-.btn-remover {
-    color: #6c757d;
-}
-
-.btn-remover:hover {
-    color: #dc3545;
-}
-
-/* Responsividade */
+/* Responsividade e Ajustes iOS */
 @media (max-width: 576px) {
     .btn-card {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
+        width: 44px; /* Aumentado para melhor área de toque no iOS */
+        height: 44px;
+        font-size: 1.2rem;
+        margin: 8px; /* Espaçamento maior para evitar toques acidentais */
+    }
+    
+    /* Fix para botões em containers fixed/absolute no iOS */
+    .position-absolute {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Ajustes específicos para iOS */
+@supports (-webkit-touch-callout: none) {
+    .btn-card {
+        padding: 0;
+        display: grid;
+        place-items: center;
+    }
+    
+    .card-footer {
+        padding: 1rem !important; /* Aumenta área clicável no iOS */
+    }
+    
+    .pokemon-card {
+        -webkit-transform: translateZ(0); /* Melhora renderização no Safari */
+        transform: translateZ(0);
     }
 }
