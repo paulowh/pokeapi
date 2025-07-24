@@ -47,11 +47,19 @@ function mostrarAlerta(mensagem, tipo = 'info') {
 function salvarPokemon(id) {
     const lista = sessionStorage.getItem('pokemonsSalvos');
     const pokemons = lista ? JSON.parse(lista) : [];
+    const btn = event.currentTarget;
+    const icon = btn.querySelector('i');
 
     if (!pokemons.includes(id)) {
         pokemons.push(id);
         sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
-        mostrarAlerta(`Pokémon #${id} salvo.`, 'success');
+        
+        // Atualiza visual do botão
+        btn.classList.add('salvo');
+        icon.classList.replace('bi-bookmark', 'bi-bookmark-fill');
+        btn.setAttribute('onclick', `removerPokemon(${id})`);
+        
+        mostrarAlerta('Pokémon salvo com sucesso!', 'success');
     } else {
         mostrarAlerta(`Pokémon #${id} já está salvo.`, 'info');
     }
@@ -63,31 +71,20 @@ function salvarPokemon(id) {
 
 function removerPokemon(id) {
     const lista = sessionStorage.getItem('pokemonsSalvos');
+    if (!lista) return;
 
-    if (!lista) {
-        mostrarAlerta('Nenhum Pokémon salvo para remover.', 'warning');
-        return;
-    }
-
-    const pokemons = JSON.parse(lista);
-    const index = pokemons.indexOf(id);
-
-    if (index > -1) {
-        pokemons.splice(index, 1);
-        sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
-        mostrarAlerta(`Pokémon #${id} removido.`, 'success');
-
-        // Recarrega a lista de pokémons
-        carregarMeusPokemon();
-
-        // Após remover com sucesso
-        const cardElement = event.currentTarget.closest('.pokemon-card');
-        if (cardElement) {
-            cardElement.remove();
-        }
-    } else {
-        mostrarAlerta(`Pokémon #${id} não está na lista.`, 'warning');
-    }
+    const btn = event.currentTarget;
+    const icon = btn.querySelector('i');
+    const pokemons = JSON.parse(lista).filter(pokemonId => pokemonId !== id);
+    
+    sessionStorage.setItem('pokemonsSalvos', JSON.stringify(pokemons));
+    
+    // Atualiza visual do botão
+    btn.classList.remove('salvo');
+    icon.classList.replace('bi-bookmark-fill', 'bi-bookmark');
+    btn.setAttribute('onclick', `salvarPokemon(${id})`);
+    
+    mostrarAlerta('Pokémon removido dos salvos!', 'info');
 }
 
 function limparPokemon() {
