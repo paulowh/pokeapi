@@ -1,21 +1,37 @@
 <?php
 $tittle = 'Consulta de Pokemon';
+$onLoad = 'loadPokemon(1)';
 
 include_once __DIR__ . '/template/header.php';
 ?>
-
 <section class="container py-4">
-    <h2 class="text-center text-primary mb-4">Buscar Pokémon</h2>
-    
-    <main class="row justify-content-center mb-4">
-        <div class="col-md-6 d-flex gap-2">
-            <input type="text" id="entrada" class="form-control" placeholder="Digite nome ou número">
-            <button class="btn btn-danger" onclick="buscarPokemonCompleto()">Buscar</button>
-            <button class="btn btn-secondary" onclick="buscarPokemonAleatorio()">Aleatório</button>
-        </div>
-    </main>
+    <h1 class="text-center text-danger mb-4">Pokédex - Os verdadeiros 151 Pokémon</h1>
+    <div class="d-flex flex-wrap gap-2 mb-3 justify-content-center btn-group" id="botoes-geracao">
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(1)">Geração 1</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(2)">Geração 2</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(3)">Geração 3</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(4)">Geração 4</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(5)">Geração 5</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(6)">Geração 6</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(7)">Geração 7</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(8)">Geração 8</button>
+        <button class="btn btn-outline-primary" type="button" onclick="loadPokemon(9)">Geração 9</button>
+    </div>
 
-    <main class="row justify-content-center">
-        <div class="col-md-6 pokedex" id="resultado"></div>
+    <main class="row gy-4 position-relative" id="pokedex">
+        <!-- ...existing code... -->
     </main>
+    <div id="loading-indicator" class="text-center mt-4 d-none">
+        <div class="spinner-border text-danger" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
 </section>
+
+<script>
+    // Adicionar o event listener para o scroll
+    document.addEventListener('scroll', scrollHandler);
+</script>
+</body>
+
+</html>
