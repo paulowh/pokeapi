@@ -9,7 +9,7 @@ $termoPesquisa = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '';
 
 <section class="container py-4">
     <h2 class="text-center text-primary mb-4">Buscar Pokémon</h2>
-    
+
     <main class="row justify-content-center mb-4">
         <div class="col-md-6 d-flex gap-2">
             <div class="autocomplete-container flex-grow-1">
@@ -27,13 +27,14 @@ $termoPesquisa = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '';
 </section>
 
 <?php if (!empty($termoPesquisa)): ?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Executa a pesquisa automaticamente quando há um termo na URL
-    buscarPokemonCompleto('<?= addslashes($termoPesquisa) ?>');
-});
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Executa a pesquisa automaticamente quando há um termo na URL
+            buscarPokemonCompleto('<?= addslashes($termoPesquisa) ?>');
+        });
+    </script>
 <?php endif; ?>
 
 </body>
+
 </html>

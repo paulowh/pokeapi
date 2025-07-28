@@ -130,3 +130,49 @@ $timePokemon = [
         Este navegador não suporta visualização de PDF.
     </iframe> -->
 </section>
+<script>
+    function isMobile() {
+        return /android|iphone|ipad|ipod/i.test(navigator.userAgent)
+    }
+
+    function isIos() {
+        return /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase())
+    }
+
+    function isInStandaloneMode() {
+        return "standalone" in window.navigator && window.navigator.standalone
+    }
+    const alertaMostrado = localStorage.getItem("alertaAddTelaInicial");
+    if (isMobile() && !alertaMostrado) {
+        let e;
+        window.addEventListener("beforeinstallprompt", (o => {
+            o.preventDefault(), e = o, confirm("Deseja adicionar este site à tela inicial?") && (e.prompt(), e.userChoice.then((o => {
+                "accepted" === o.outcome ? console.log("Usuário aceitou adicionar à tela inicial") : console.log("Usuário recusou adicionar à tela inicial"), e = null
+            }))), localStorage.setItem("alertaAddTelaInicial", "true")
+        })), isIos() && !isInStandaloneMode() && (alert('Para adicionar este site à sua tela inicial, toque no botão de compartilhar e depois em "Adicionar à Tela de Início".'), localStorage.setItem("alertaAddTelaInicial", "true"))
+    }
+    document.addEventListener("DOMContentLoaded", (function() {
+        const e = "ultimoAccordionAberto",
+            o = document.getElementById("accordionExample"),
+            t = localStorage.getItem(e);
+        if (t) {
+            const e = document.getElementById(t);
+            if (e) {
+                new bootstrap.Collapse(e, {
+                    toggle: !0
+                })
+            }
+        }
+        o.addEventListener("show.bs.collapse", (function(o) {
+            localStorage.setItem(e, o.target.id)
+        }))
+    })), document.querySelectorAll(".accordion-collapse").forEach((e => {
+        e.addEventListener("shown.bs.collapse", (function() {
+            const e = this.closest(".accordion-item");
+            e && e.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            })
+        }))
+    }))
+</script>

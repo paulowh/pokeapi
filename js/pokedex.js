@@ -239,6 +239,7 @@ let currentIndex = 0;
 const POKEMON_PER_PAGE = 20;
 
 async function loadPokemon(gen = null) {
+   
     // Se uma geração foi especificada, reinicia o estado
     if (gen !== null) {
         currentGen = gen;
@@ -346,7 +347,7 @@ function pesquisarHeader(event) {
     
     if (termoPesquisa) {
         // Redireciona para a página de pesquisa com o parâmetro
-        window.location.href = `./search-pokemon.php?q=${encodeURIComponent(termoPesquisa)}`;
+        window.location.href = `./search-pokemon?q=${encodeURIComponent(termoPesquisa)}`;
     }
 }
 
@@ -505,7 +506,7 @@ function selecionarSugestao(nomePokemon) {
         buscarPokemonCompleto(nomePokemon);
     } else {
         // Se estiver no header, redireciona para a página de pesquisa
-        window.location.href = `./search-pokemon.php?q=${encodeURIComponent(nomePokemon)}`;
+        window.location.href = `./search-pokemon?q=${encodeURIComponent(nomePokemon)}`;
     }
 }
 
