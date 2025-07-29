@@ -1,0 +1,312 @@
+<!-- Navegação entre Pokémon -->
+<div class="container-fluid bg-light py-2 pokemon-navigation">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            {% if id > 1 %}
+                <a href="pokemon-detalhes.php?id={{ id - 1 }}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-chevron-left"></i> Nº {{ '%04d'|format(id - 1) }} Pokémon Anterior
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-auto d-flex gap-2">
+            <a href="index.php" class="btn btn-primary btn-sm">
+                <i class="bi bi-grid"></i> Voltar à Pokédex
+            </a>
+        </div>
+        <div class="col-auto">
+            {% if id < 1025 %}
+                <a href="pokemon-detalhes.php?id={{ id + 1 }}" class="btn btn-outline-secondary btn-sm">
+                    Próximo Pokémon Nº {{ '%04d'|format(id + 1) }} <i class="bi bi-chevron-right"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row">
+        <!-- Coluna da Imagem e Informações Básicas -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header text-center bg-white">
+                    <h1 class="mb-1 text-capitalize">{{ nome }}</h1>
+                    <h4 class="text-muted">Nº {{ '%04d'|format(id) }}</h4>
+                </div>
+                <div class="card-body text-center">
+                    <div class="position-relative mb-4">
+                        <img src="{{ img }}" alt="{{ nome }}" class="img-fluid pokemon-main-image" style="max-width: 300px; height: auto;">
+                    </div>
+                    
+                    {% if descricao %}
+                        <p class="text-muted mb-4" style="font-style: italic;">{{ descricao }}</p>
+                    {% endif %}
+                    
+                    <!-- Informações Básicas em Cards -->
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title mb-1">Altura</h6>
+                                    <p class="card-text mb-0"><strong>{{ altura }} m</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title mb-1">Peso</h6>
+                                    <p class="card-text mb-0"><strong>{{ peso }} kg</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title mb-1">Sexo</h6>
+                                    <p class="card-text mb-0">
+                                        <i class="bi bi-gender-male"></i> <i class="bi bi-gender-female"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title mb-1">Categoria</h6>
+                                    <p class="card-text mb-0"><strong>{{ categoria }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coluna das Estatísticas e Tipos -->
+        <div class="col-lg-6">
+            <div class="row h-100">
+                <!-- Tipos -->
+                <div class="col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">Tipo</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center gap-3">
+                                {% for type in types %}
+                                    <div class="text-center">
+                                        <div class="type-badge {{ type.nome_en }} mb-2 p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <img src="{{ type.icon }}" alt="{{ type.nome }}" class="type-icon" style="width: 25px; height: 25px;">
+                                        </div>
+                                        <small class="text-capitalize fw-bold">{{ type.nome }}</small>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fraquezas -->
+                <div class="col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">Fraquezas</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if fraquezas|length > 0 %}
+                                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                    {% for fraqueza in fraquezas %}
+                                        <div class="text-center">
+                                            <div class="weakness-type-badge type-badge {{ fraqueza.nome_en }} mb-2 p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                                <img src="img/icons/{{ fraqueza.nome_en }}.svg" alt="{{ fraqueza.nome }}" class="type-icon" style="width: 25px; height: 25px;">
+                                            </div>
+                                            <small class="text-capitalize fw-bold d-block">
+                                                {{ fraqueza.nome }}{% if fraqueza.multiplier is defined and fraqueza.multiplier > 2 %}<span style="color: #dc3545;">*</span>{% endif %}
+                                            </small>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p class="text-muted text-center mb-0">Nenhuma fraqueza específica conhecida</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Estatísticas -->
+                <div class="col-12">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">Estatísticas</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for stat in stats %}
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-4">
+                                        <small class="fw-bold">{{ stat.nome }}</small>
+                                    </div>
+                                    <div class="col-2 text-center">
+                                        <small class="fw-bold">{{ stat.valor }}</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar 
+                                                {% if stat.valor < 50 %}bg-danger
+                                                {% elseif stat.valor < 80 %}bg-warning
+                                                {% elseif stat.valor < 120 %}bg-success
+                                                {% else %}bg-primary
+                                                {% endif %}" 
+                                                role="progressbar" 
+                                                style="width: {{ (stat.valor / 200 * 100)|round }}%"
+                                                aria-valuenow="{{ stat.valor }}" 
+                                                aria-valuemin="0" 
+                                                aria-valuemax="200">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Seção de Habilidades -->
+    {% if habilidades %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">Habilidades</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0"><strong>{{ habilidades }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+    <!-- Seção de Evoluções -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">Evoluções</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if evolucoes|length > 1 %}
+                        {% set hasMultipleEvolutions = false %}
+                        {% set baseEvolution = evolucoes[0] %}
+                        {% set evolutionCount = 0 %}
+                        
+                        {# Contar quantas evoluções existem além da base #}
+                        {% for evolucao in evolucoes %}
+                            {% if loop.index > 1 %}
+                                {% set evolutionCount = evolutionCount + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if evolutionCount > 2 %}
+                            {# Layout especial para múltiplas evoluções (como Eevee) #}
+                            <div class="multiple-evolutions-layout">
+                                {# Pokémon base no centro esquerdo #}
+                                <div class="base-evolution">
+                                    <div class="evolution-card-large" style="cursor: pointer; border: {{ baseEvolution.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ baseEvolution.id }}'">
+                                        <img src="{{ baseEvolution.img }}" alt="{{ baseEvolution.nome }}">
+                                    </div>
+                                    <div class="evolution-info">
+                                        <strong class="text-capitalize">{{ baseEvolution.nome }}</strong>
+                                        <br><small class="text-muted">Nº {{ '%04d'|format(baseEvolution.id) }}</small>
+                                        {% if baseEvolution.id == id %}
+                                            <br><small class="text-primary fw-bold">Atual</small>
+                                        {% endif %}
+                                        {# Mostrar tipos da evolução base #}
+                                        {% if baseEvolution.types %}
+                                            <div class="mt-2">
+                                                {% for type in baseEvolution.types %}
+                                                    <span class="badge type-badge-small {{ type.nome_en }}">{{ type.nome }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                {# Seta #}
+                                <div class="evolution-arrow-large">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                                
+                                {# Grid de evoluções #}
+                                <div class="evolutions-grid">
+                                    {% for evolucao in evolucoes %}
+                                        {% if loop.index > 1 %}
+                                            <div class="evolution-item">
+                                                <div class="evolution-card-small" style="cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ evolucao.id }}'">
+                                                    <img src="{{ evolucao.img }}" alt="{{ evolucao.nome }}">
+                                                </div>
+                                                <div class="evolution-info-small">
+                                                    <strong class="text-capitalize">{{ evolucao.nome }}</strong>
+                                                    <br><small class="text-muted">Nº {{ '%04d'|format(evolucao.id) }}</small>
+                                                    {% if evolucao.id == id %}
+                                                        <br><small class="text-primary fw-bold">Atual</small>
+                                                    {% endif %}
+                                                    {# Mostrar tipos da evolução #}
+                                                    {% if evolucao.types %}
+                                                        <div class="mt-1">
+                                                            {% for type in evolucao.types %}
+                                                                <span class="badge type-badge-small {{ type.nome_en }}">{{ type.nome }}</span>
+                                                            {% endfor %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            {# Layout linear para evoluções simples #}
+                            <div class="row justify-content-center align-items-center">
+                                {% for i, evolucao in evolucoes %}
+                                    <div class="col-auto">
+                                        <div class="text-center">
+                                            <div class="rounded-circle bg-light p-3 mb-2 evolution-card" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ evolucao.id }}'">
+                                                <img src="{{ evolucao.img }}" alt="{{ evolucao.nome }}" style="max-width: 80px; max-height: 80px;">
+                                            </div>
+                                            <small class="text-capitalize fw-bold">{{ evolucao.nome }}</small>
+                                            <br><small class="text-muted">Nº {{ '%04d'|format(evolucao.id) }}</small>
+                                            {% if evolucao.id == id %}
+                                                <br><small class="text-primary fw-bold">Atual</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if i < (evolucoes|length - 1) %}
+                                        <div class="col-auto">
+                                            <i class="bi bi-arrow-right text-muted" style="font-size: 2rem;"></i>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-auto">
+                                <div class="text-center">
+                                    <div class="rounded-circle bg-light p-3 mb-2" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border: 3px solid #007bff;">
+                                        <img src="{{ img }}" alt="{{ nome }}" style="max-width: 80px; max-height: 80px;">
+                                    </div>
+                                    <small class="text-capitalize fw-bold">{{ nome }}</small>
+                                    <br><small class="text-muted">Nº {{ '%04d'|format(id) }}</small>
+                                    <br><small class="text-primary fw-bold">Não evolui</small>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

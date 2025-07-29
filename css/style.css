@@ -28,14 +28,19 @@
 
 /* ===== Estilos dos Cards de Pokémon ===== */
 .pokemon-card {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .pokemon-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pokemon-card[style*="cursor: pointer"]:hover {
+    border-color: #007bff;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
 }
 
 .pokemon-img {
@@ -712,5 +717,317 @@ main, section, article, .pokedex {
         font-size: 11px;
         padding: 1px 6px;
         min-width: 40px;
+    }
+}
+
+/* ===== Estilos da Página de Detalhes ===== */
+.pokemon-details-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.pokemon-main-image {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.pokemon-detail-card {
+    transition: transform 0.2s ease;
+    border: none;
+    border-radius: 15px;
+}
+
+.pokemon-detail-card:hover {
+    transform: translateY(-2px);
+}
+
+.type-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.type-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos específicos para fraquezas (menores que os tipos) */
+.weakness-type-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
+}
+
+.weakness-type-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Cores dos tipos */
+.type-badge.normal { background: linear-gradient(135deg, #A8A878, #C0C0A8); }
+.type-badge.fire { background: linear-gradient(135deg, #F08030, #FFA850); }
+.type-badge.water { background: linear-gradient(135deg, #6890F0, #98D0F0); }
+.type-badge.electric { background: linear-gradient(135deg, #F8D030, #FFEB70); }
+.type-badge.grass { background: linear-gradient(135deg, #78C850, #A8E890); }
+.type-badge.ice { background: linear-gradient(135deg, #98D8D8, #C8F0F0); }
+.type-badge.fighting { background: linear-gradient(135deg, #C03028, #E85048); }
+.type-badge.poison { background: linear-gradient(135deg, #A040A0, #C058C0); }
+.type-badge.ground { background: linear-gradient(135deg, #E0C068, #F0D888); }
+.type-badge.flying { background: linear-gradient(135deg, #A890F0, #C8B0F8); }
+.type-badge.psychic { background: linear-gradient(135deg, #F85888, #FF90A8); }
+.type-badge.bug { background: linear-gradient(135deg, #A8B820, #C8D840); }
+.type-badge.rock { background: linear-gradient(135deg, #B8A038, #D8C058); }
+.type-badge.ghost { background: linear-gradient(135deg, #705898, #9078B8); }
+.type-badge.dragon { background: linear-gradient(135deg, #7038F8, #9058F8); }
+.type-badge.dark { background: linear-gradient(135deg, #705848, #907868); }
+.type-badge.steel { background: linear-gradient(135deg, #B8B8D0, #D8D8E8); }
+.type-badge.fairy { background: linear-gradient(135deg, #EE99AC, #FFB9CC); }
+
+.stat-progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    overflow: hidden;
+}
+
+.stat-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.stat-bar.low { background: linear-gradient(90deg, #dc3545, #e74c3c); }
+.stat-bar.medium { background: linear-gradient(90deg, #ffc107, #f39c12); }
+.stat-bar.high { background: linear-gradient(90deg, #28a745, #2ecc71); }
+.stat-bar.very-high { background: linear-gradient(90deg, #007bff, #3498db); }
+
+.pokemon-info-card {
+    background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+    border: none;
+    border-radius: 15px;
+}
+
+.pokemon-info-card .card-body {
+    padding: 1.5rem;
+}
+
+.evolution-stage {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.evolution-stage:hover {
+    transform: scale(1.05);
+}
+
+.evolution-arrow {
+    font-size: 2rem;
+    color: #6c757d;
+    margin: 0 1rem;
+}
+
+.pokemon-navigation {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.weakness-badge {
+    margin: 0.2rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+}
+
+/* Cores das fraquezas baseadas nos tipos */
+.weakness-badge.normal { background-color: #A8A878; }
+.weakness-badge.fire { background-color: #F08030; }
+.weakness-badge.water { background-color: #6890F0; }
+.weakness-badge.electric { background-color: #F8D030; color: #333; }
+.weakness-badge.grass { background-color: #78C850; }
+.weakness-badge.ice { background-color: #98D8D8; }
+.weakness-badge.fighting { background-color: #C03028; }
+.weakness-badge.poison { background-color: #A040A0; }
+.weakness-badge.ground { background-color: #E0C068; }
+.weakness-badge.flying { background-color: #A890F0; }
+.weakness-badge.psychic { background-color: #F85888; }
+.weakness-badge.bug { background-color: #A8B820; }
+.weakness-badge.rock { background-color: #B8A038; }
+.weakness-badge.ghost { background-color: #705898; }
+.weakness-badge.dragon { background-color: #7038F8; }
+.weakness-badge.dark { background-color: #705848; }
+.weakness-badge.steel { background-color: #B8B8D0; color: #333; }
+.weakness-badge.fairy { background-color: #EE99AC; }
+
+/* Responsividade para a página de detalhes */
+@media (max-width: 768px) {
+    .pokemon-main-image {
+        max-width: 200px;
+    }
+    
+    .type-badge {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .type-badge img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .evolution-arrow {
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+    }
+}
+
+/* ===== Estilos das Evoluções ===== */
+.evolution-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.evolution-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.evolution-card img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.evolution-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Layout especial para múltiplas evoluções */
+.multiple-evolutions-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.base-evolution {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.evolution-card-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin: 0 auto 10px;
+}
+
+.evolution-card-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.evolution-card-large img {
+    max-width: 90px;
+    max-height: 90px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.evolution-card-large:hover img {
+    transform: scale(1.1);
+}
+
+.evolution-arrow-large {
+    font-size: 2.5rem;
+    color: #6c757d;
+    flex-shrink: 0;
+}
+
+.evolutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 400px;
+}
+
+.evolution-item {
+    text-align: center;
+}
+
+.evolution-card-small {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin: 0 auto 8px;
+}
+
+.evolution-card-small:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.evolution-card-small img {
+    max-width: 60px;
+    max-height: 60px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.evolution-card-small:hover img {
+    transform: scale(1.1);
+}
+
+.evolution-info {
+    margin-top: 10px;
+}
+
+.evolution-info-small {
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
+.type-badge-small {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .multiple-evolutions-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .evolution-arrow-large {
+        transform: rotate(90deg);
+        font-size: 2rem;
+    }
+    
+    .evolutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 250px;
     }
 }
