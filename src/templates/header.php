@@ -97,8 +97,9 @@ require_once __DIR__ . '/../core.php';
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                             <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
-                            <li><a class="dropdown-item" href="./">Pokédex</a></li>
+                            <li><a class="dropdown-item" href="./">Pokédx</a></li>
                             <li><a class="dropdown-item" href="./search-pokemon">Pesquisar</a></li>
+                            <li><a class="dropdown-item" href="./filtros-avancados"><i class="bi bi-funnel"></i> Filtros Avançados</a></li>
                             <li><a class="dropdown-item" href="./mini-game">Mini Game</a></li>
                             <li>
                                 <hr class="dropdown-divider">

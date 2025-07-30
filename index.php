@@ -1,5 +1,16 @@
 <?php
-$tittle = 'Consulta de Pokemon';
+$t?>
+<section class="container py-4">
+    <h1 class="text-center text-danger mb-4">Pokédx</h1>
+    
+    <!-- Botão para Filtros Avançados -->
+    <div class="d-flex justify-content-center mb-3">
+        <a href="./filtros-avancados" class="btn btn-outline-primary btn-lg">
+            <i class="bi bi-funnel"></i> Filtros Avançados
+        </a>
+    </div>
+    
+    <!-- <div class="d-flex flex-wrap gap-2 mb-3 justify-content-center btn-group" id="botoes-geracao">e = 'Consulta de Pokemon';
 
 
 $gen = isset($_GET['g']) ? htmlspecialchars($_GET['g']) : 1;

@@ -1,11 +1,12 @@
-# 🔥 Pokédex Web App
+# 🔥 Pokédx Web App
 
 Uma aplicação web moderna e interativa para explorar o universo Pokémon, construída com PHP, Twig e integração com a PokéAPI.
 
 ## ✨ Características
 
-- 🎯 **Pokédex Completa**: Navegue por todos os Pokémons com informações detalhadas
+- 🎯 **Pokédx Completa**: Navegue por todos os Pokémons com informações detalhadas
 - 🔍 **Busca Avançada**: Encontre Pokémons por nome, tipo ou número
+- 🎛️ **Filtros Avançados**: Sistema completo de filtros por tipo, fraqueza, altura, peso e mais
 - ❤️ **Coleção Pessoal**: Salve seus Pokémons favoritos
 - 🎮 **Mini Game**: Jogo interativo "Quem é esse Pokémon?"
 - 📖 **Detonado Digital**: Guia completo em PDF
@@ -60,8 +61,9 @@ http://localhost/pokeapi
 
 ```
 pokeapi/
-├── 📄 index.php                 # Página principal (Pokédex)
+├── 📄 index.php                 # Página principal (Pokédx)
 ├── 🔍 search-pokemon.php        # Busca detalhada de Pokémons
+├── 🎛️ filtros-avancados.php     # Sistema de filtros avançados
 ├── 📝 pokemon-detalhes.php      # Página de detalhes do Pokémon
 ├── ❤️ meus-pokemon.php          # Coleção pessoal de Pokémons
 ├── 🎮 mini-game.php             # Mini game "Quem é esse Pokémon?"
@@ -76,8 +78,9 @@ pokeapi/
 │   │   ├── bootstrap.min.css    # Framework CSS
 │   │   └── style.css            # Estilos customizados
 │   ├── 💻 js/
-│   │   ├── pokedex.js           # Lógica principal da Pokédex
-│   │   └── pokemon-detalhes.js  # Interações da página de detalhes
+│   │   ├── pokedex.js           # Lógica principal da Pokédx
+│   │   ├── pokemon-detalhes.js  # Interações da página de detalhes
+│   │   └── filtros-avancados.js # Sistema de filtros avançados
 │   └── 🖼️ img/
 │       ├── icons/               # Ícones dos tipos Pokémon
 │       └── pdf/                 # Arquivos PDF
@@ -99,11 +102,21 @@ pokeapi/
 
 ## 🎮 Funcionalidades
 
-### 🔍 Pokédex Principal
+### 🔍 Pokédx Principal
 - Lista paginada de todos os Pokémons
 - Busca rápida por nome ou número
 - Cards informativos com imagem e tipos
 - Navegação intuitiva
+
+### 🎛️ Filtros Avançados
+- **Filtros por Tipo**: Selecione tipos específicos (T)
+- **Filtros por Fraqueza**: Encontre Pokémons com fraquezas específicas (F)
+- **Filtros por Altura**: Baixo, médio ou alto
+- **Filtros por Peso**: Leve, médio ou pesado
+- **Filtros por Habilidade**: Dropdown com habilidades disponíveis
+- **Intervalo de Números**: Defina uma faixa específica
+- **Ordenação Múltipla**: Por número, nome, altura ou peso
+- **Busca Instantânea**: Resultados em tempo real
 
 ### 📝 Detalhes do Pokémon
 - Informações completas: stats, tipos, habilidades

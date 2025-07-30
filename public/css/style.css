@@ -1031,3 +1031,151 @@ main, section, article, .pokedex {
         max-width: 250px;
     }
 }
+
+/* ===== Estilos para Filtros Avançados ===== */
+.filters-panel {
+    position: sticky;
+    top: 20px;
+}
+
+.type-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 70px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===== Cores dos Tipos Pokémon ===== */
+.type-badge.bug, .badge.type-bug { 
+    background-color: #A8B820; 
+    color: white; 
+}
+
+.type-badge.dark, .badge.type-dark { 
+    background-color: #705848; 
+    color: white; 
+}
+
+.type-badge.dragon, .badge.type-dragon { 
+    background-color: #7038F8; 
+    color: white; 
+}
+
+.type-badge.electric, .badge.type-electric { 
+    background-color: #F8D030; 
+    color: black; 
+}
+
+.type-badge.fairy, .badge.type-fairy { 
+    background-color: #EE99AC; 
+    color: black; 
+}
+
+.type-badge.fighting, .badge.type-fighting { 
+    background-color: #C03028; 
+    color: white; 
+}
+
+.type-badge.fire, .badge.type-fire { 
+    background-color: #F08030; 
+    color: white; 
+}
+
+.type-badge.flying, .badge.type-flying { 
+    background-color: #A890F0; 
+    color: white; 
+}
+
+.type-badge.ghost, .badge.type-ghost { 
+    background-color: #705898; 
+    color: white; 
+}
+
+.type-badge.grass, .badge.type-grass { 
+    background-color: #78C850; 
+    color: white; 
+}
+
+.type-badge.ground, .badge.type-ground { 
+    background-color: #E0C068; 
+    color: black; 
+}
+
+.type-badge.ice, .badge.type-ice { 
+    background-color: #98D8D8; 
+    color: black; 
+}
+
+.type-badge.normal, .badge.type-normal { 
+    background-color: #A8A878; 
+    color: white; 
+}
+
+.type-badge.poison, .badge.type-poison { 
+    background-color: #A040A0; 
+    color: white; 
+}
+
+.type-badge.psychic, .badge.type-psychic { 
+    background-color: #F85888; 
+    color: white; 
+}
+
+.type-badge.rock, .badge.type-rock { 
+    background-color: #B8A038; 
+    color: white; 
+}
+
+.type-badge.steel, .badge.type-steel { 
+    background-color: #B8B8D0; 
+    color: black; 
+}
+
+.type-badge.water, .badge.type-water { 
+    background-color: #6890F0; 
+    color: white; 
+}
+
+/* ===== Estados dos Botões de Filtro ===== */
+.type-btn.active {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+    color: white !important;
+}
+
+.altura-btn.active, .peso-btn.active {
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
+    border-color: var(--bs-light) !important;
+}
+
+/* ===== Responsividade dos Filtros ===== */
+@media (max-width: 991px) {
+    .filters-panel {
+        position: relative !important;
+        max-height: none;
+        margin-bottom: 2rem;
+    }
+    
+    .type-filter-item {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .type-badge {
+        min-width: 60px;
+        font-size: 10px;
+    }
+}
