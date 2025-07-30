@@ -1,88 +1,59 @@
-# 🎮 Pokédex Web App
+# 🔥 Pokédex Web App
 
-Uma aplicação web moderna e completa para explorar o universo Pokémon, com interface responsiva, recursos avançados e suporte PWA.
+Uma aplicação web moderna e interativa para explorar o universo Pokémon, construída com PHP, Twig e integração com a PokéAPI.
 
-## ✨ Recursos Principais
+## ✨ Características
 
-### 🔍 Exploração & Busca
-- **Pokédex Completa**: Navegação por todas as gerações de Pokémon
-- **Busca Inteligente**: Autocomplete com sugestões em tempo real
-- **Filtros Avançados**: Por tipo, geração, nome ou número
-- **Detalhes Completos**: Stats, tipos, evoluções e habilidades
+- 🎯 **Pokédex Completa**: Navegue por todos os Pokémons com informações detalhadas
+- 🔍 **Busca Avançada**: Encontre Pokémons por nome, tipo ou número
+- ❤️ **Coleção Pessoal**: Salve seus Pokémons favoritos
+- 🎮 **Mini Game**: Jogo interativo "Quem é esse Pokémon?"
+- 📖 **Detonado Digital**: Guia completo em PDF
+- 📱 **PWA Ready**: Instale como aplicativo no seu dispositivo
+- 🌐 **URLs Amigáveis**: Navegação sem extensões `.php`
+- ⚡ **Interface Responsiva**: Funciona em desktop, tablet e mobile
 
-### 💾 Gestão Pessoal
-- **Meus Pokémon**: Sistema de favoritos e coleção pessoal
-- **Cache Inteligente**: Dados salvos localmente para acesso rápido
-- **Infinite Scroll**: Carregamento dinâmico e otimizado
+## 🚀 Tecnologias
 
-### 📱 Experiência Móvel
-- **Progressive Web App (PWA)**: Instalável no celular/desktop
-- **Interface Responsiva**: Bootstrap 5 mobile-first
-- **Touch Friendly**: Otimizado para dispositivos touch
+- **PHP 8+**: Backend e lógica de negócio
+- **Twig 3**: Engine de templates
+- **Bootstrap 5**: Framework CSS responsivo
+- **jQuery**: Manipulação DOM e AJAX
+- **PokéAPI**: API externa para dados dos Pokémons
+- **PWA**: Progressive Web App
 
-### 🎯 Extras Divertidos
-- **Mini Game**: "Quem é esse Pokémon?" com sistema de pontuação
-- **Detonado Digital**: Guia completo FireRed/LeafGreen em PDF
-- **Aleatorização**: Descubra Pokémon aleatórios
+## 📋 Requisitos
 
-## 🛠️ Tecnologias Utilizadas
+- **PHP 8.0+** com extensões:
+  - `curl` (para requisições à PokéAPI)
+  - `json` (para processamento de dados)
+- **Composer** (gerenciador de dependências)
+- **Servidor Web** (Apache/Nginx) com suporte a:
+  - `.htaccess` (Apache) ou configuração equivalente
+  - `mod_rewrite` habilitado
 
-### Frontend
-- **HTML5/CSS3**: Estrutura semântica e responsiva
-- **JavaScript ES6+**: Funcionalidades modernas e assíncronas
-- **Bootstrap 5**: Framework CSS com componentes prontos
-- **Bootstrap Icons**: Iconografia consistente
-- **PWA**: Service Workers e Manifest
+## 🛠️ Instalação
 
-### Backend
-- **PHP 8.0+**: Linguagem server-side
-- **Twig**: Template engine poderoso e seguro
-- **Composer**: Gerenciamento de dependências
-
-### APIs & Dados
-- **PokeAPI**: API oficial completa do universo Pokémon
-- **SessionStorage**: Cache local para performance
-- **JSON**: Manipulação de dados estruturados
-
-## 🚀 Instalação e Configuração
-
-### Pré-requisitos
-- **PHP 8.0+**
-- **Composer**
-- **Servidor web** (Apache/Nginx/XAMPP)
-- **Git**
-
-### Instalação Local
-
-1. **Clone o repositório:**
+### 1. Clone o projeto
 ```bash
-git clone https://github.com/seu-usuario/pokeapi.git
+git clone https://github.com/paulowh/pokeapi.git
 cd pokeapi
 ```
 
-2. **Instale as dependências:**
+### 2. Instale as dependências
 ```bash
 composer install
 ```
 
-3. **Acesse a aplicação:**
+### 3. Configure o servidor web
+Certifique-se de que o servidor web esteja configurado para:
+- Suportar `.htaccess` (Apache)
+- Ter `mod_rewrite` habilitado
+- Apontar para a pasta do projeto
+
+### 4. Acesse a aplicação
 ```
 http://localhost/pokeapi
-```
-
-### � Acesso Mobile (Rede Local)
-
-Para testar no celular na mesma rede:
-
-1. **Descubra seu IP local:**
-```bash
-ipconfig  # Windows
-ifconfig  # Linux/Mac
-```
-
-2. **Acesse no celular:**
-```
-http://SEU_IP_LOCAL/pokeapi
 ```
 
 ## 📁 Estrutura do Projeto
@@ -90,114 +61,123 @@ http://SEU_IP_LOCAL/pokeapi
 ```
 pokeapi/
 ├── 📄 index.php                 # Página principal (Pokédex)
-├── 🔍 search-pokemon.php        # Busca detalhada
-├── ❤️ meus-pokemon.php          # Coleção pessoal  
-├── 🎮 mini-game.php             # Mini game
-├── 📖 detonado.php              # Detonado digital
-├── 📱 manifest.json             # PWA configuration
-├── 🎨 css/
-│   ├── bootstrap.min.css        # Framework CSS
-│   └── style.css                # Estilos customizados
-├── 💻 js/
-│   ├── bootstrap.min.js         # Componentes Bootstrap
-│   ├── jquery-3.7.1.min.js      # Biblioteca jQuery
-│   └── pokedex.js               # Lógica principal
-├── 🖼️ img/                      # Imagens e ícones
-├── 📄 template/                 # Templates Twig
-│   ├── header.php               # Cabeçalho comum
-│   ├── pokemon-card.twig        # Card de Pokémon
-│   ├── pokemon-ficha.twig       # Ficha detalhada
-│   ├── meu-time-pokemon.twig    # Lista pessoal
-│   └── detonado.twig            # Template do guia
-├── 📚 vendor/                   # Dependências Composer
-└── 🔧 function.php              # Funções auxiliares
+├── 🔍 search-pokemon.php        # Busca detalhada de Pokémons
+├── 📝 pokemon-detalhes.php      # Página de detalhes do Pokémon
+├── ❤️ meus-pokemon.php          # Coleção pessoal de Pokémons
+├── 🎮 mini-game.php             # Mini game "Quem é esse Pokémon?"
+├── 📖 detonado.php              # Detonado digital em PDF
+├── 🔧 render.php                # Renderizador de templates AJAX
+├── 📱 manifest.json             # Configuração PWA
+├── 🎛️ .htaccess                 # Regras de URL amigáveis
+├── 📦 composer.json             # Dependências do projeto
+│
+├── 📂 public/                   # Assets públicos
+│   ├── 🎨 css/
+│   │   ├── bootstrap.min.css    # Framework CSS
+│   │   └── style.css            # Estilos customizados
+│   ├── 💻 js/
+│   │   ├── pokedex.js           # Lógica principal da Pokédex
+│   │   └── pokemon-detalhes.js  # Interações da página de detalhes
+│   └── 🖼️ img/
+│       ├── icons/               # Ícones dos tipos Pokémon
+│       └── pdf/                 # Arquivos PDF
+│
+├── 📂 src/                      # Código fonte
+│   ├── 🔧 core.php              # Configurações e funções principais
+│   ├── 📂 controllers/          # Controladores (futuro)
+│   └── 📂 templates/            # Templates Twig
+│       ├── header.php           # Cabeçalho comum
+│       ├── pokemon-card.twig    # Card de Pokémon
+│       ├── pokemon-detalhes.twig # Página de detalhes
+│       ├── pokemon-ficha.twig   # Ficha resumida
+│       ├── meu-time-pokemon.twig # Lista pessoal
+│       └── detonado.twig        # Template do detonado
+│
+└── 📂 vendor/                   # Dependências Composer
+    └── twig/                    # Engine de templates
 ```
 
-## 🎯 Recursos Técnicos Avançados
+## 🎮 Funcionalidades
 
-### Performance
-- **Lazy Loading**: Imagens carregadas sob demanda
-- **Cache Estratégico**: SessionStorage para dados frequentes
-- **Infinite Scroll**: Paginação automática otimizada
-- **Debounce**: Busca otimizada com delay inteligente
+### 🔍 Pokédex Principal
+- Lista paginada de todos os Pokémons
+- Busca rápida por nome ou número
+- Cards informativos com imagem e tipos
+- Navegação intuitiva
 
-### UX/UI
-- **Autocomplete**: Sugestões em tempo real com dropdown
-- **Feedback Visual**: Loading states e animações
-- **Alertas Contextuais**: Notificações Bootstrap
-- **Navegação Intuitiva**: Menu responsivo e breadcrumbs
+### 📝 Detalhes do Pokémon
+- Informações completas: stats, tipos, habilidades
+- Cadeia evolutiva interativa
+- Fraquezas e resistências
+- Navegação por teclado (setas, Escape)
 
-### Compatibilidade
-- **Cross-browser**: Chrome, Firefox, Safari, Edge
-- **Responsive Design**: Desktop, tablet e mobile
-- **PWA Standards**: Instalável e offline-ready
-- **Acessibilidade**: ARIA labels e navegação por teclado
+### ❤️ Meus Pokémons
+- Sistema de favoritos local
+- Gerenciamento da coleção pessoal
+- Persistência no localStorage
 
-## � Roadmap Futuro
+### 🎮 Mini Game
+- Jogo "Quem é esse Pokémon?"
+- Sistema de pontuação
+- Dificuldade progressiva
 
-## 🔄 Roadmap Futuro
+### 📖 Detonado Digital
+- Guia completo em PDF
+- Download direto
+- Informações estratégicas
 
-### v1.1 - Autenticação & Usuários
-- [ ] Sistema de login/registro
-- [ ] Perfis personalizados de treinadores
-- [ ] Sincronização de dados na nuvem
-- [ ] Preferências e configurações
+## 🔧 Configuração Avançada
 
-### v1.2 - Social & Compartilhamento  
-- [ ] Compartilhamento de coleções
-- [ ] Exportação de dados (JSON/CSV)
-- [ ] Sistema de conquistas/badges
-- [ ] Integração com redes sociais
+### URLs Amigáveis
+O projeto utiliza `.htaccess` para URLs sem extensão:
+- ✅ `/pokemon-detalhes?id=1` 
+- ❌ `/pokemon-detalhes.php?id=1`
 
-### v1.3 - Dados Expandidos
-- [ ] Informações de localização nos jogos
-- [ ] Sistema completo de movimentos
-- [ ] Árvore evolutiva interativa
-- [ ] Matriz de efetividade de tipos
-- [ ] Calculadora de stats/IV
+### PWA (Progressive Web App)
+Configure o `manifest.json` para personalizar:
+- Nome da aplicação
+- Ícones
+- Cores do tema
+- Modo de exibição
 
-### v1.4 - Funcionalidades Avançadas
-- [ ] Modo offline completo
-- [ ] Estatísticas detalhadas da coleção
-- [ ] Sistema de teams/equipes
-- [ ] Comparador de Pokémon
-- [ ] Guias de outras gerações
+### API Externa
+A aplicação consome a [PokéAPI](https://pokeapi.co/):
+- Cache inteligente de requisições
+- Tratamento de erros robusto
+- Timeout configurável
 
-### v1.5+ - Expansões
-- [ ] Novos mini-games e desafios
-- [ ] Sistema de notificações push
-- [ ] Dark mode/temas personalizáveis
-- [ ] API própria para desenvolvedores
+## 🐛 Solução de Problemas
 
-## 🤝 Contribuindo
+### Erro 500 - Internal Server Error
+- Verifique se `mod_rewrite` está habilitado
+- Confirme as permissões do arquivo `.htaccess`
 
-Contribuições são sempre bem-vindas! Para contribuir:
+### Imagens não carregam
+- Verifique a conexão com a internet
+- Confirme se o `curl` está habilitado no PHP
 
-1. **Fork** o projeto
-2. **Crie** uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. **Commit** suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. **Push** para a branch (`git push origin feature/MinhaFeature`)
-5. **Abra** um Pull Request
+### Templates não encontrados
+- Execute `composer install`
+- Verifique as permissões da pasta `vendor/`
 
-### Diretrizes de Contribuição
-- Siga os padrões de código existentes
-- Teste suas modificações em diferentes dispositivos
-- Documente novas funcionalidades
-- Mantenha commits claros e descritivos
+## 🤝 Contribuição
 
-
-## 📞 Suporte
-
-- **Issues**: Use o sistema de issues do GitHub
-- **Documentação**: Verifique o README e comentários no código
-- **API**: [PokeAPI Documentation](https://pokeapi.co/docs/v2)
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 🔗 Links Úteis
+
+- [PokéAPI Documentation](https://pokeapi.co/docs/v2)
+- [Twig Documentation](https://twig.symfony.com/doc/3.x/)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/)
 
 ---
 
-**Desenvolvido com ❤️ para a comunidade Pokémon**
-
-*Gotta Catch 'Em All!* ⚡🎮
+**Desenvolvido com ❤️ por [Paulo](https://github.com/paulowh)**

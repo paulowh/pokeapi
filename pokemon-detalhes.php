@@ -3,13 +3,13 @@ $title = 'Detalhes do Pokémon';
 
 // Verificar se foi passado um ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header('Location: index.php');
+    header('Location: index');
     exit;
 }
 
 $pokemonId = (int)$_GET['id'];
 
-include_once __DIR__ . '/function.php';
+include_once __DIR__ . '/src/core.php';
 
 // Função para buscar dados do Pokémon na PokeAPI
 function fetchPokemonData($id) {
@@ -65,11 +65,18 @@ function fetchEvolutionChain($url) {
 
 // Função para extrair dados das evoluções
 function processEvolutionChain($evolutionData) {
-    $evolutions = [];
+    if (!$evolutionData || !isset($evolutionData['chain'])) {
+        return [];
+    }
     
-    function extractEvolutions($chain, &$evolutions) {
+    $evolutions = [];
+    $chainQueue = [$evolutionData['chain']];
+    
+    while (!empty($chainQueue)) {
+        $currentChain = array_shift($chainQueue);
+        
         // Extrair ID do Pokémon da URL
-        $urlParts = explode('/', $chain['species']['url']);
+        $urlParts = explode('/', $currentChain['species']['url']);
         $speciesId = intval($urlParts[count($urlParts) - 2]);
         
         // Buscar dados básicos do Pokémon para obter os tipos
@@ -87,21 +94,17 @@ function processEvolutionChain($evolutionData) {
         
         $evolutions[] = [
             'id' => $speciesId,
-            'nome' => ucfirst($chain['species']['name']),
+            'nome' => ucfirst($currentChain['species']['name']),
             'img' => "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$speciesId.png",
             'types' => $types
         ];
         
-        // Processar próximas evoluções
-        if (!empty($chain['evolves_to'])) {
-            foreach ($chain['evolves_to'] as $evolution) {
-                extractEvolutions($evolution, $evolutions);
+        // Adicionar evoluções à fila
+        if (!empty($currentChain['evolves_to'])) {
+            foreach ($currentChain['evolves_to'] as $evolution) {
+                $chainQueue[] = $evolution;
             }
         }
-    }
-    
-    if ($evolutionData && isset($evolutionData['chain'])) {
-        extractEvolutions($evolutionData['chain'], $evolutions);
     }
     
     return $evolutions;
@@ -269,7 +272,7 @@ function translateType($type) {
 $pokemonData = fetchPokemonData($pokemonId);
 
 if (!$pokemonData) {
-    header('Location: index.php');
+    header('Location: index');
     exit;
 }
 
@@ -290,7 +293,7 @@ foreach ($pokemonData['types'] as $type) {
     $types[] = [
         'nome' => translateType($typeName),
         'nome_en' => $typeName,
-        'icon' => "img/icons/$typeName.svg"
+        'icon' => asset("img/icons/$typeName.svg")
     ];
 }
 
@@ -372,11 +375,11 @@ $dadosPokemon = [
     'evolucoes' => $evolucoes
 ];
 
-include_once __DIR__ . '/template/header.php';
+include_once __DIR__ . '/src/templates/header.php';
 ?>
 
 <?= render('pokemon-detalhes', $dadosPokemon) ?>
 
-<script src="js/pokemon-detalhes.js"></script>
+<script src="<?= asset('js/pokemon-detalhes.js') ?>"></script>
 </body>
 </html>

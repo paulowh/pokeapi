@@ -12,12 +12,10 @@ const GERACOES = {
     9: { inicio: 906, fim: 1025 }
 };
 
-let currentLoadId = 0;
-let currentRequest = null;
 let pokemonAtual = '';
 
 // ==== Funções utilitárias ====
-const getIcon = type => `./img/icons/${type}.svg`;
+const getIcon = type => `/pokeapi/public/img/icons/${type}.svg`;
 const imgArtwork = (id, shiny = false) => shiny
     ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`
     : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
@@ -89,7 +87,6 @@ function removerPokemon(id) {
 
 function limparPokemon() {
     sessionStorage.removeItem('pokemonsSalvos');
-    // location.reload();
 }
 
 function buscarPokemonCompleto(valor = null) {
@@ -232,14 +229,12 @@ async function carregarMeusPokemon() {
     }
 }
 
-let currentRequests = [];
 let isLoading = false;
 let currentGen = 1;
 let currentIndex = 0;
 const POKEMON_PER_PAGE = 20;
 
 async function loadPokemon(gen = null) {
-   
     // Se uma geração foi especificada, reinicia o estado
     if (gen !== null) {
         currentGen = gen;
@@ -580,7 +575,3 @@ function ocultarSugestoesImediato() {
     
     indiceSugestaoSelecionada = -1;
 }
-
-// Com position: absolute, o dropdown acompanha automaticamente o scroll
-// não sendo mais necessários os event listeners de reposicionamento
-

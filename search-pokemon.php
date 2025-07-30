@@ -1,7 +1,7 @@
 <?php
 $tittle = 'Consulta de Pokemon';
 
-include_once __DIR__ . '/template/header.php';
+include_once __DIR__ . '/src/templates/header.php';
 
 // Captura o parâmetro de pesquisa da URL
 $termoPesquisa = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '';

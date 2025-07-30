@@ -2,7 +2,7 @@
 $tittle = 'Consulta de Pokemon';
 $onLoad = 'carregarMeusPokemon()';
 
-include_once __DIR__ . '/template/header.php';
+include_once __DIR__ . '/src/templates/header.php';
 ?>
 
 <main class="container py-4">

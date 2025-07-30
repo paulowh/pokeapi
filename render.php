@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/function.php';
+include_once __DIR__ . '/src/core.php';
 
 // Lê o corpo da requisição como JSON
 $input = json_decode(file_get_contents('php://input'), true);

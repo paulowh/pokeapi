@@ -1,5 +1,5 @@
 <div class="col-6 col-md-4 col-lg-3">
-    <div class="card pokemon-card text-center shadow-sm h-100" data-pokemon-id="{{ id }}" style="cursor: pointer;" onclick="window.location.href='pokemon-detalhes.php?id={{ id }}'">
+    <div class="card pokemon-card text-center shadow-sm h-100" data-pokemon-id="{{ id }}" style="cursor: pointer;" onclick="window.location.href='pokemon-detalhes?id={{ id }}'">
         <div class="position-relative">
             <button class="btn-card btn-salvar position-absolute top-0 end-0 m-2 {{ meusPokemon ? 'salvo' : '' }}" 
                     onclick="event.stopPropagation(); {{ meusPokemon ? 'removerPokemon' : 'salvarPokemon' }}({{ id }})">

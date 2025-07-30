@@ -3,19 +3,19 @@
     <div class="row justify-content-between align-items-center">
         <div class="col-auto">
             {% if id > 1 %}
-                <a href="pokemon-detalhes.php?id={{ id - 1 }}" class="btn btn-outline-secondary btn-sm">
+                <a href="pokemon-detalhes?id={{ id - 1 }}" class="btn btn-outline-secondary btn-sm">
                     <i class="bi bi-chevron-left"></i> Nº {{ '%04d'|format(id - 1) }} Pokémon Anterior
                 </a>
             {% endif %}
         </div>
         <div class="col-auto d-flex gap-2">
-            <a href="index.php" class="btn btn-primary btn-sm">
+            <a href="index" class="btn btn-primary btn-sm">
                 <i class="bi bi-grid"></i> Voltar à Pokédex
             </a>
         </div>
         <div class="col-auto">
             {% if id < 1025 %}
-                <a href="pokemon-detalhes.php?id={{ id + 1 }}" class="btn btn-outline-secondary btn-sm">
+                <a href="pokemon-detalhes?id={{ id + 1 }}" class="btn btn-outline-secondary btn-sm">
                     Próximo Pokémon Nº {{ '%04d'|format(id + 1) }} <i class="bi bi-chevron-right"></i>
                 </a>
             {% endif %}
@@ -118,7 +118,7 @@
                                     {% for fraqueza in fraquezas %}
                                         <div class="text-center">
                                             <div class="weakness-type-badge type-badge {{ fraqueza.nome_en }} mb-2 p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                                <img src="img/icons/{{ fraqueza.nome_en }}.svg" alt="{{ fraqueza.nome }}" class="type-icon" style="width: 25px; height: 25px;">
+                                                <img src="{{ asset('img/icons/' ~ fraqueza.nome_en ~ '.svg') }}" alt="{{ fraqueza.nome }}" class="type-icon" style="width: 25px; height: 25px;">
                                             </div>
                                             <small class="text-capitalize fw-bold d-block">
                                                 {{ fraqueza.nome }}{% if fraqueza.multiplier is defined and fraqueza.multiplier > 2 %}<span style="color: #dc3545;">*</span>{% endif %}
@@ -214,7 +214,7 @@
                             <div class="multiple-evolutions-layout">
                                 {# Pokémon base no centro esquerdo #}
                                 <div class="base-evolution">
-                                    <div class="evolution-card-large" style="cursor: pointer; border: {{ baseEvolution.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ baseEvolution.id }}'">
+                                    <div class="evolution-card-large" style="cursor: pointer; border: {{ baseEvolution.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes?id={{ baseEvolution.id }}'">>
                                         <img src="{{ baseEvolution.img }}" alt="{{ baseEvolution.nome }}">
                                     </div>
                                     <div class="evolution-info">
@@ -244,7 +244,7 @@
                                     {% for evolucao in evolucoes %}
                                         {% if loop.index > 1 %}
                                             <div class="evolution-item">
-                                                <div class="evolution-card-small" style="cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ evolucao.id }}'">
+                                                <div class="evolution-card-small" style="cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes?id={{ evolucao.id }}'">>
                                                     <img src="{{ evolucao.img }}" alt="{{ evolucao.nome }}">
                                                 </div>
                                                 <div class="evolution-info-small">
@@ -273,7 +273,7 @@
                                 {% for i, evolucao in evolucoes %}
                                     <div class="col-auto">
                                         <div class="text-center">
-                                            <div class="rounded-circle bg-light p-3 mb-2 evolution-card" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes.php?id={{ evolucao.id }}'">
+                                            <div class="rounded-circle bg-light p-3 mb-2 evolution-card" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: {{ evolucao.id == id ? '3px solid #007bff' : '2px solid #dee2e6' }};" onclick="window.location.href='pokemon-detalhes?id={{ evolucao.id }}'">>
                                                 <img src="{{ evolucao.img }}" alt="{{ evolucao.nome }}" style="max-width: 80px; max-height: 80px;">
                                             </div>
                                             <small class="text-capitalize fw-bold">{{ evolucao.nome }}</small>

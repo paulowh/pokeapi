@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../function.php';
+require_once __DIR__ . '/../core.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +8,13 @@ require_once __DIR__ . '/../function.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= isset($tittle) && !empty($tittle) ? $tittle : 'Pokemon' ?></title>
+    <title><?= isset($title) && !empty($title) ? $title : 'Pokemon' ?></title>
 
     <!-- Manifesto PWA -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="<?= url('manifest.json') ?>">
 
     <!-- Ícones Apple -->
-    <link rel="apple-touch-icon" href="./img/icon-192.png">
+    <link rel="apple-touch-icon" href="<?= asset('img/icon-192.png') ?>">
 
     <!-- Meta Tags para iPhone -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,17 +24,17 @@ require_once __DIR__ . '/../function.php';
     <meta name="apple-mobile-web-app-title" content="Detonado Pokémon">
     <meta name="theme-color" content="#345952">
 
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= asset('img/favicon.ico') ?>" type="image/x-icon">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?= asset('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <!-- Altere a ordem dos scripts -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/pokedex.js"></script>
+    <script src="<?= asset('js/pokedex.js') ?>"></script>
 </head>
 
 <body class="bg-light" onload="<?= isset($onLoad) && !empty($onLoad) ? $onLoad : '' ?>">
@@ -45,7 +45,7 @@ require_once __DIR__ . '/../function.php';
         <div class="container d-none d-md-block">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="./" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none me-lg-4">
-                    <img src="./img/pokeapi_256.png" alt="Logo" width="40" class="me-2">
+                    <img src="<?= asset('img/pokeapi_256.png') ?>" alt="Logo" width="40" class="me-2">
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -64,7 +64,7 @@ require_once __DIR__ . '/../function.php';
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="./img/pokeball.png" alt="Menu" width="32" height="32" class="rounded-circle">
+                        <img src="<?= asset('img/pokeball.png') ?>" alt="Menu" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                         <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>
@@ -93,7 +93,7 @@ require_once __DIR__ . '/../function.php';
 
                     <div class="flex-shrink-0 dropdown">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="./img/pokeball.png" alt="Menu" width="32" height="32" class="rounded-circle">
+                            <img src="<?= asset('img/pokeball.png') ?>" alt="Menu" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                             <li><a class="dropdown-item" href="./meus-pokemon">Meus Pokémon</a></li>

@@ -1,7 +1,7 @@
 <?php
 $tittle = 'Detonado Pokemon Fire Red';
 
-include_once __DIR__ . '/template/header.php';
+include_once __DIR__ . '/src/templates/header.php';
 
 $timePokemon = [
     [

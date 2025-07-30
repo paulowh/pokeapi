@@ -6,7 +6,7 @@ $gen = isset($_GET['g']) ? htmlspecialchars($_GET['g']) : 1;
 
 $onLoad = 'loadPokemon(' . $gen. ')';
 
-include_once __DIR__ . '/template/header.php';
+include_once __DIR__ . '/src/templates/header.php';
 ?>
 <section class="container py-4">
     <h1 class="text-center text-danger mb-4">Pokédex</h1>

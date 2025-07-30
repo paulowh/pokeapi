@@ -10,20 +10,20 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'ArrowLeft':
                 // Ir para o Pokémon anterior
                 if (currentId > 1) {
-                    window.location.href = `pokemon-detalhes.php?id=${currentId - 1}`;
+                    window.location.href = `pokemon-detalhes?id=${currentId - 1}`;
                 }
                 break;
                 
             case 'ArrowRight':
                 // Ir para o próximo Pokémon
                 if (currentId < 1025) {
-                    window.location.href = `pokemon-detalhes.php?id=${currentId + 1}`;
+                    window.location.href = `pokemon-detalhes?id=${currentId + 1}`;
                 }
                 break;
                 
             case 'Escape':
                 // Voltar para a Pokédex
-                window.location.href = 'index.php';
+                window.location.href = 'index';
                 break;
         }
     });
