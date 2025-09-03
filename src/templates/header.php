@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../core.php';
+echo '<pre>';
+var_dump($_SERVER);
+require_once $_SERVER['HTTP_HOST'] . '/../core.php';
 
-var_dump(__DIR__ . '/../core.php');
 ?>
 
 <!DOCTYPE html>
