@@ -92,13 +92,22 @@ function PokemonDetalhes() {
   return (
     <div className="pokemon-detail-container">
       <div className="pokemon-detail-header">
-        <Link to={`/pokemon/${String(parseInt(id) - 1)}`} className="nav-link prev">
-          <i className="bi bi-chevron-left"></i> Nº {String(parseInt(id) - 1).padStart(4, '0')} Pokémon Anterior
+        {id > 1 ? (
+          <Link to={`/pokemon/${String(parseInt(id) - 1)}`} className="nav-link prev">
+            <i className="bi bi-chevron-left"></i> Nº {String(parseInt(id) - 1).padStart(4, '0')} Pokémon Anterior
+          </Link>
+        ) : (
+          <div></div>
+        )
+        
+        }
+
+
+        <Link to='/' className="btn btn-primary save-btn">
+          <i className='bi bi-grid'> </i> Voltar à Pokédex
+
         </Link>
-        <button className="btn btn-primary save-btn" onClick={handleSalvar}>
-          <i className={`bi ${salvo ? 'bi-bookmark-fill' : 'bi-bookmark'} me-2`}></i>
-          {salvo ? 'Salvo' : 'Voltar à Pokédex'}
-        </button>
+
         <Link to={`/pokemon/${String(parseInt(id) + 1)}`} className="nav-link next">
           Próximo Pokémon Nº {String(parseInt(id) + 1).padStart(4, '0')} <i className="bi bi-chevron-right"></i>
         </Link>

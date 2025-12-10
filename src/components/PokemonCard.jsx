@@ -37,47 +37,46 @@ function PokemonCard({ pokemon }) {
   return (
     <>
       <div className="col-md-4 col-lg-3">
-        <Link to={`/pokemon/${pokemon.id}`} className="text-decoration-none">
-          <div className="card pokemon-card h-100 shadow-sm">
-            <div className="card-body text-center position-relative">
-              <button
-                className={`btn btn-sm position-absolute top-0 end-0 m-2 ${salvo ? 'btn-danger' : 'btn-outline-danger'}`}
-                onClick={handleSalvar}
-                title={salvo ? 'Remover dos salvos' : 'Salvar pokémon'}
-              >
-                <i className={`bi ${salvo ? 'bi-bookmark-fill' : 'bi-bookmark'}`}></i>
-              </button>
+        <div className="pokemon-card">
+          <button
+            className={`bookmark-btn ${salvo ? 'active' : ''}`}
+            onClick={handleSalvar}
+            title={salvo ? 'Remover dos salvos' : 'Salvar pokémon'}
+          >
+            <i className={`bi ${salvo ? 'bi-bookmark-fill' : 'bi-bookmark'}`}></i>
+          </button>
 
-              <span className="badge bg-secondary mb-2">#{formatId(pokemon.id)}</span>
+          <Link to={`/pokemon/${pokemon.id}`} className="card-link">
+            <div className="pokemon-id">ID: #{formatId(pokemon.id)}</div>
 
+            <div className="pokemon-image-container">
               <img
                 src={imgArtwork(pokemon.id)}
                 alt={pokemon.name}
-                className="pokemon-img img-fluid mb-3"
+                className="pokemon-img"
                 loading="lazy"
               />
-
-              <h5 className="card-title text-capitalize">{pokemon.name}</h5>
-
-              <div className="d-flex gap-2 justify-content-center flex-wrap">
-                {pokemon.types.map((type, index) => (
-                  <span
-                    key={index}
-                    className="badge type-badge"
-                    style={{ backgroundColor: getTypeColor(type.type.name) }}
-                  >
-                    <img
-                      src={getIcon(type.type.name)}
-                      alt={type.type.name}
-                      className="type-icon me-1"
-                    />
-                    {translateType(type.type.name)}
-                  </span>
-                ))}
-              </div>
             </div>
-          </div>
-        </Link>
+
+            <h5 className="pokemon-name">{pokemon.name}</h5>
+
+            <div className="pokemon-types">
+              {pokemon.types.map((type, index) => (
+                <span
+                  key={index}
+                  className="type-badge"
+                >
+                  <img
+                    src={getIcon(type.type.name)}
+                    alt={type.type.name}
+                    className="type-icon"
+                  />
+                  {translateType(type.type.name)}
+                </span>
+              ))}
+            </div>
+          </Link>
+        </div>
       </div>
 
       {showAlert && (

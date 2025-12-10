@@ -19,7 +19,7 @@ function Header() {
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm-sm">
         <div className="container-fluid px-3">
           <div className="d-flex align-items-center gap-2">
-            <img src={`${import.meta.env.BASE_URL}img/icons/pokebola.png`} alt="Pokédex" className="brand-logo" />
+            <img src={`${import.meta.env.BASE_URL}img/pokeball.png`} alt="Pokédex" className="brand-logo" />
             <Link className="navbar-brand fw-bold text-dark" to="/">
               Pokédex
             </Link>
@@ -82,7 +82,7 @@ function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <img src={`${import.meta.env.BASE_URL}img/icons/pokebola.png`} alt="Menu" className="user-avatar" />
+                  <img src={`${import.meta.env.BASE_URL}img/pokeball.png`} alt="Menu" className="user-avatar" />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li><Link className="dropdown-item" to="/meus-pokemon">Meus Pokémon</Link></li>
