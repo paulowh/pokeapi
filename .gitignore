@@ -1,19 +1,34 @@
-/vendor/
-
-composer.lock
-
+# Logs
+logs
 *.log
-*.cache
-*.tmp
-*.swp
-.DS_Store
-Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
+# Dependency directories
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Editor directories and files
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.bak
 
-uploads/
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-fiveserver.config.js
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

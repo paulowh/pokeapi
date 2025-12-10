@@ -1,0 +1,475 @@
+.pokemon-detail-container {
+  background: #f5f5f5;
+  padding-bottom: 2rem;
+}
+
+/* Header com navegação */
+.pokemon-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: #dc3545;
+}
+
+.nav-link.prev {
+  order: 1;
+  flex: 0 1 auto;
+}
+
+.nav-link.next {
+  order: 3;
+  flex: 0 1 auto;
+}
+
+.save-btn {
+  order: 2;
+  flex: 0 1 auto;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Conteúdo principal */
+.pokemon-detail-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Primeira linha do grid */
+.grid-row-first {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Lado esquerdo - Card do Pokémon */
+.detail-left {
+  display: flex;
+  justify-content: center;
+}
+
+/* Segunda linha do grid - Habilidades e Evoluções (100% width) */
+.grid-row-second {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.pokemon-card-grid {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pokemon-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  text-transform: capitalize;
+}
+
+.pokemon-number {
+  color: #999;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.pokemon-image {
+  width: auto;
+  max-width: 100%;
+  height: 250px;
+  object-fit: contain;
+  margin: 1rem auto;
+  display: block;
+}
+
+.pokemon-description {
+  color: #777;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 1.5rem 0;
+  min-height: 60px;
+}
+
+/* Grid de informações */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.info-box {
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.info-box .label {
+  display: block;
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.info-box .value {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Lado direito - Cards de informações */
+.detail-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+/* Cards de Habilidades e Evoluções */
+.abilities-card,
+.evolutions-card {
+  width: 100%;
+}
+
+.detail-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Reduzir altura dos cards de Tipo e Fraqueza */
+.detail-right>.detail-card:nth-child(1),
+.detail-right>.detail-card:nth-child(2) {
+  flex: 0 0 auto;
+  min-height: 150px;
+}
+
+/* Aumentar altura do card de Estatísticas */
+.detail-right>.detail-card:nth-child(3) {
+  flex: 1;
+  min-height: 300px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.8rem;
+}
+
+/* Tipos */
+.types-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.type-badge .type-icon {
+  width: 18px;
+  height: 18px;
+  filter: none;
+}
+
+.type-badge .type-name {
+  text-transform: capitalize;
+}
+
+/* Fraquezas */
+.weaknesses-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.weakness-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  min-width: 100px;
+  justify-content: center;
+}
+
+.weakness-badge .type-icon {
+  width: 18px;
+  height: 18px;
+  filter: none;
+}
+
+/* Estatísticas */
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 120px 40px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  text-align: left;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #333;
+  text-align: right;
+  min-width: 40px;
+}
+
+.stat-bar {
+  background: #e0e0e0;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Habilidades */
+.abilities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ability-item {
+  padding: 0.8rem;
+  background: #f8f8f8;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border-left: 3px solid #dc3545;
+}
+
+/* Evoluções */
+.evolution-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.evolution-arrow {
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.evolution-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.evolution-item {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f8f8;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.evolution-types {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.evolution-type {
+  padding: 0.3rem 0.6rem;
+}
+
+.evolution-item:hover {
+  transform: translateY(-5px);
+  border-color: #dc3545;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.evolution-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .grid-row-first {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-row-second {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemon-detail-header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-link {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link.prev {
+    order: 1;
+  }
+
+  .save-btn {
+    order: 2;
+    width: 100%;
+  }
+
+  .nav-link.next {
+    order: 3;
+  }
+
+  .pokemon-detail-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .grid-row-first {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-row-second {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-row {
+    grid-template-columns: 100px 40px 1fr;
+  }
+
+  .types-container,
+  .weaknesses-container {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-detail-container {
+    padding-bottom: 1rem;
+  }
+
+  .pokemon-card-grid {
+    padding: 1rem;
+  }
+
+  .pokemon-name {
+    font-size: 1.5rem;
+  }
+
+  .pokemon-image {
+    height: 200px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-row {
+    grid-template-columns: 90px 35px 1fr;
+    font-size: 0.85rem;
+  }
+
+  .evolution-container {
+    gap: 0.5rem;
+  }
+
+  .evolution-item {
+    min-width: 100px;
+    padding: 0.75rem;
+  }
+
+  .evolution-img {
+    width: 80px;
+    height: 80px;
+  }
+}

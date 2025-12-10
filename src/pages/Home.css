@@ -1,0 +1,8 @@
+h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.btn-group .btn {
+  min-width: 100px;
+}

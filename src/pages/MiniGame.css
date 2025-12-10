@@ -1,0 +1,50 @@
+.pokemon-container {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.pokemon-image {
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: contain;
+  transition: filter 0.5s ease;
+}
+
+.pokemon-image.oculto {
+  filter: brightness(0) drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+}
+
+.pokemon-image.revelado {
+  filter: none;
+  animation: reveal 0.5s ease;
+}
+
+@keyframes reveal {
+  from {
+    filter: brightness(0) drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+    transform: scale(0.8);
+  }
+
+  to {
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+.input-group {
+  max-width: 400px;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+.badge {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}

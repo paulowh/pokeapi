@@ -1,36 +1,32 @@
 # 🔥 Pokédex Web App
 
-Uma aplicação web moderna e interativa para explorar o universo Pokémon, construída com PHP, Twig e integração com a PokéAPI.
+Uma aplicação web moderna e interativa para explorar o universo Pokémon, construída com React.js e integração com a PokéAPI.
 
 ## ✨ Características
 
-- 🎯 **Pokédex Completa**: Navegue por todos os Pokémons com informações detalhadas
-- 🔍 **Busca Avançada**: Encontre Pokémons por nome, tipo ou número
-- ❤️ **Coleção Pessoal**: Salve seus Pokémons favoritos
+- 🎯 **Pokédex Completa**: Navegue por todos os Pokémons organizados por gerações
+- 🔍 **Visualização Detalhada**: Informações completas incluindo estatísticas e evoluções
+- ❤️ **Coleção Pessoal**: Salve seus Pokémons favoritos no localStorage
 - 🎮 **Mini Game**: Jogo interativo "Quem é esse Pokémon?"
-- 📖 **Detonado Digital**: Guia completo em PDF
+- 📖 **Detonado Digital**: Acesso a guia completo em PDF
 - 📱 **PWA Ready**: Instale como aplicativo no seu dispositivo
-- 🌐 **URLs Amigáveis**: Navegação sem extensões `.php`
-- ⚡ **Interface Responsiva**: Funciona em desktop, tablet e mobile
+- ⚡ **Interface Responsiva**: Funciona perfeitamente em desktop, tablet e mobile
+- 🚀 **SPA**: Single Page Application com navegação fluida
 
 ## 🚀 Tecnologias
 
-- **PHP 8+**: Backend e lógica de negócio
-- **Twig 3**: Engine de templates
+- **React 18**: Biblioteca JavaScript para interfaces
+- **React Router**: Navegação entre páginas
+- **Vite**: Build tool moderna e rápida
+- **Axios**: Cliente HTTP para requisições à API
 - **Bootstrap 5**: Framework CSS responsivo
-- **jQuery**: Manipulação DOM e AJAX
-- **PokéAPI**: API externa para dados dos Pokémons
-- **PWA**: Progressive Web App
+- **PokéAPI**: API REST para dados dos Pokémons
+- **PWA**: Progressive Web App com Vite PWA Plugin
 
 ## 📋 Requisitos
 
-- **PHP 8.0+** com extensões:
-  - `curl` (para requisições à PokéAPI)
-  - `json` (para processamento de dados)
-- **Composer** (gerenciador de dependências)
-- **Servidor Web** (Apache/Nginx) com suporte a:
-  - `.htaccess` (Apache) ou configuração equivalente
-  - `mod_rewrite` habilitado
+- **Node.js 18+** ou superior
+- **npm** ou **yarn** (gerenciador de pacotes)
 
 ## 🛠️ Instalação
 
@@ -42,12 +38,17 @@ cd pokeapi
 
 ### 2. Instale as dependências
 ```bash
-composer install
+npm install
 ```
 
-### 3. Configure o servidor web
-Certifique-se de que o servidor web esteja configurado para:
-- Suportar `.htaccess` (Apache)
+### 3. Execute o projeto em modo desenvolvimento
+```bash
+npm run dev
+```
+
+### 4. Build para produção
+```bash
+npm run build
 - Ter `mod_rewrite` habilitado
 - Apontar para a pasta do projeto
 
