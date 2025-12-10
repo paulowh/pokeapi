@@ -74,22 +74,6 @@ function Header() {
                   onChange={(e) => setQuery(e.target.value)}
                 />
               </form>
-
-              <div className="dropdown">
-                <button
-                  className="btn dropdown-toggle user-btn"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img src={`${import.meta.env.BASE_URL}img/pokeball.png`} alt="Menu" className="user-avatar" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li><Link className="dropdown-item" to="/meus-pokemon">Meus Pokémon</Link></li>
-                  <li><Link className="dropdown-item" to="/">Pokédex</Link></li>
-                  <li><Link className="dropdown-item" to="/mini-game">Mini Game</Link></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

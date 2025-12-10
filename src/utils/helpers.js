@@ -95,3 +95,99 @@ export const getRandomPokemonId = (max = 1025) => {
 export const normalizeName = (name) => {
   return name.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
+
+const TYPE_WEAKNESSES = {
+  normal: ['fighting'],
+  fighting: ['flying', 'psychic', 'fairy'],
+  flying: ['rock', 'electric', 'ice'],
+  poison: ['ground', 'psychic'],
+  ground: ['water', 'grass', 'ice'],
+  rock: ['fighting', 'ground', 'steel', 'water', 'grass'],
+  bug: ['flying', 'rock', 'fire'],
+  ghost: ['ghost', 'dark'],
+  steel: ['fighting', 'ground', 'fire'],
+  fire: ['ground', 'rock', 'water'],
+  water: ['grass', 'electric'],
+  grass: ['flying', 'poison', 'bug', 'fire', 'ice'],
+  electric: ['ground'],
+  psychic: ['bug', 'ghost', 'dark'],
+  ice: ['fighting', 'rock', 'steel', 'fire'],
+  dragon: ['ice', 'dragon', 'fairy'],
+  dark: ['fighting', 'bug', 'fairy'],
+  fairy: ['poison', 'steel']
+};
+
+const TYPE_RESISTANCES = {
+  normal: [],
+  fighting: ['rock', 'bug', 'dark'],
+  flying: ['fighting', 'bug', 'grass'],
+  poison: ['fighting', 'poison', 'bug', 'grass', 'fairy'],
+  ground: ['poison', 'rock'],
+  rock: ['normal', 'flying', 'poison', 'fire'],
+  bug: ['fighting', 'ground', 'grass'],
+  ghost: ['poison', 'bug'],
+  steel: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'psychic', 'ice', 'dragon', 'fairy'],
+  fire: ['bug', 'steel', 'fire', 'grass', 'ice', 'fairy'],
+  water: ['steel', 'fire', 'water', 'ice'],
+  grass: ['ground', 'water', 'grass', 'electric'],
+  electric: ['flying', 'steel', 'electric'],
+  psychic: ['fighting', 'psychic'],
+  ice: ['ice'],
+  dragon: ['fire', 'water', 'grass', 'electric'],
+  dark: ['ghost', 'dark'],
+  fairy: ['fighting', 'bug', 'dark']
+};
+
+const TYPE_IMMUNITIES = {
+  normal: ['ghost'],
+  fighting: [],
+  flying: ['ground'],
+  poison: [],
+  ground: ['electric'],
+  rock: [],
+  bug: [],
+  ghost: ['normal', 'fighting'],
+  steel: ['poison'],
+  fire: [],
+  water: [],
+  grass: [],
+  electric: [],
+  psychic: [],
+  ice: [],
+  dragon: [],
+  dark: ['psychic'],
+  fairy: ['dragon']
+};
+
+export const getWeaknesses = (types) => {
+  if (!types || types.length === 0) return [];
+
+  const damageMultipliers = {};
+
+  Object.keys(TYPE_WEAKNESSES).forEach(type => {
+    damageMultipliers[type] = 1;
+  });
+
+  types.forEach(typeObj => {
+    const typeName = typeObj.type.name;
+
+    TYPE_WEAKNESSES[typeName]?.forEach(weakType => {
+      damageMultipliers[weakType] = (damageMultipliers[weakType] || 1) * 2;
+    });
+
+    TYPE_RESISTANCES[typeName]?.forEach(resistType => {
+      damageMultipliers[resistType] = (damageMultipliers[resistType] || 1) * 0.5;
+    });
+
+    TYPE_IMMUNITIES[typeName]?.forEach(immuneType => {
+      damageMultipliers[immuneType] = 0;
+    });
+  });
+
+  const weaknesses = Object.entries(damageMultipliers)
+    .filter(([type, multiplier]) => multiplier > 1)
+    .map(([type, multiplier]) => ({ type, multiplier }))
+    .sort((a, b) => b.multiplier - a.multiplier);
+
+  return weaknesses;
+};

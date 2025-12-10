@@ -13,8 +13,8 @@ export default defineConfig({
         name: 'Pokédex Web App',
         short_name: 'Pokédex',
         description: 'Uma aplicação web moderna para explorar o universo Pokémon',
-        theme_color: '#dc3545',
-        background_color: '#ffffff',
+        theme_color: '#345952',
+        background_color: '#F2DCB3',
         display: 'standalone',
         icons: [
           {

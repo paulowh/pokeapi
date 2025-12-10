@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchPokemon, fetchPokemonSpecies, fetchEvolutionChain } from '../services/pokeapi';
-import { translateType, getIcon, imgArtwork, formatId, getTypeColor, processEvolutionChain } from '../utils/helpers';
+import { translateType, getIcon, imgArtwork, formatId, getTypeColor, processEvolutionChain, getWeaknesses } from '../utils/helpers';
 import { salvarPokemon, removerPokemon, isPokemonSalvo } from '../services/storage';
 import Loading from '../components/Loading';
 import './PokemonDetalhes.css';
@@ -81,13 +81,8 @@ function PokemonDetalhes() {
     speed: 'Velocidade'
   };
 
-  // Obter fraquezas (tipos que causam dano super efetivo)
-  const getWeaknesses = () => {
-    if (!pokemon.types) return [];
-    // Para simplificar, vamos retornar um array vazio
-    // Em uma implementação real, você buscaria dos dados de tipo da PokeAPI
-    return [];
-  };
+  // Obter fraquezas do pokemon
+  const weaknesses = pokemon.types ? getWeaknesses(pokemon.types) : [];
 
   return (
     <div className="pokemon-detail-container">
@@ -99,7 +94,7 @@ function PokemonDetalhes() {
         ) : (
           <div></div>
         )
-        
+
         }
 
 
@@ -174,22 +169,24 @@ function PokemonDetalhes() {
             <div className="detail-card">
               <h3 className="card-title">Fraquezas</h3>
               <div className="weaknesses-container">
-                <span className="weakness-badge" style={{ backgroundColor: getTypeColor('fire') }}>
-                  <img src={getIcon('fire')} alt="fire" className="type-icon" />
-                  <span className="type-name">Fogo</span>
-                </span>
-                <span className="weakness-badge" style={{ backgroundColor: getTypeColor('ice') }}>
-                  <img src={getIcon('ice')} alt="ice" className="type-icon" />
-                  <span className="type-name">Gelo</span>
-                </span>
-                <span className="weakness-badge" style={{ backgroundColor: getTypeColor('flying') }}>
-                  <img src={getIcon('flying')} alt="flying" className="type-icon" />
-                  <span className="type-name">Voador</span>
-                </span>
-                <span className="weakness-badge" style={{ backgroundColor: getTypeColor('psychic') }}>
-                  <img src={getIcon('psychic')} alt="psychic" className="type-icon" />
-                  <span className="type-name">Psíquico</span>
-                </span>
+                {weaknesses.length > 0 ? (
+                  weaknesses.map((weakness, index) => (
+                    <span
+                      key={index}
+                      className="weakness-badge"
+                      style={{ backgroundColor: getTypeColor(weakness.type) }}
+                      title={`${weakness.multiplier}x de dano`}
+                    >
+                      <img src={getIcon(weakness.type)} alt={weakness.type} className="type-icon" />
+                      <span className="type-name">{translateType(weakness.type)}</span>
+                      {weakness.multiplier > 2 && (
+                        <span className="multiplier-badge">×{weakness.multiplier}</span>
+                      )}
+                    </span>
+                  ))
+                ) : (
+                  <p className="text-muted">Nenhuma fraqueza identificada</p>
+                )}
               </div>
             </div>
 
