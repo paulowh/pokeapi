@@ -31,7 +31,19 @@ function PokemonDetalhes() {
       if (speciesData.evolution_chain) {
         const evolutionData = await fetchEvolutionChain(speciesData.evolution_chain.url);
         const evolutionList = processEvolutionChain(evolutionData.chain);
-        setEvolutions(evolutionList);
+        // Enriquecer evoluções com tipos
+        const evolutionsWithTypes = await Promise.all(
+          evolutionList.map(async (evo) => {
+            try {
+              const evoData = await fetchPokemon(evo.id);
+              return { ...evo, types: evoData.types || [] };
+            } catch (err) {
+              console.error('Erro ao carregar tipos da evolução', err);
+              return { ...evo, types: [] };
+            }
+          })
+        );
+        setEvolutions(evolutionsWithTypes);
       }
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
@@ -223,6 +235,19 @@ function PokemonDetalhes() {
                         <img src={evo.img} alt={evo.name} className="evolution-img" />
                         <p className="text-capitalize mb-1">{evo.name}</p>
                         <small className="text-muted">Nº {formatId(evo.id)}</small>
+                        {evo.types && evo.types.length > 0 && (
+                          <div className="evolution-types">
+                            {evo.types.map((typeObj, i) => (
+                              <span
+                                key={i}
+                                className="type-badge evolution-type"
+                                style={{ backgroundColor: getTypeColor(typeObj.type.name) }}
+                              >
+                                <img src={getIcon(typeObj.type.name)} alt={typeObj.type.name} className="type-icon" />
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </Link>
                   </React.Fragment>

@@ -230,7 +230,7 @@
 .type-badge .type-icon {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .type-badge .type-name {
@@ -262,7 +262,7 @@
 .weakness-badge .type-icon {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 /* Estatísticas */
@@ -348,6 +348,17 @@
   border: 2px solid #e0e0e0;
   transition: all 0.3s ease;
   min-width: 120px;
+}
+
+.evolution-types {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.evolution-type {
+  padding: 0.3rem 0.6rem;
 }
 
 .evolution-item:hover {

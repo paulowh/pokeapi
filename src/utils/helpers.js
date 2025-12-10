@@ -26,7 +26,8 @@ export const translateType = (type) => {
 };
 
 export const getIcon = (type) => {
-  return `/img/icons/${type}.svg`;
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}img/icons/${type}.svg`;
 };
 
 export const imgArtwork = (id, shiny = false) => {
