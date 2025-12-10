@@ -85,6 +85,7 @@ function PokemonCard({ pokemon }) {
             {alertMessage}
           </div>
         </div>
+        
       )}
     </>
   );
